@@ -21,8 +21,8 @@ public class Main {
     }
 
     /**
-     * Measures sorting time for arrays whose size doubles each iteration.
-     * For O(n log n), the time ratio should grow much more slowly than 2^2.
+     * measures sorting time for arrays whose size doubles each iteration.
+     * for O(n log n), the time ratio should grow much more slowly than 2^2.
      */
     private static void benchmark() {
         System.out.println();
