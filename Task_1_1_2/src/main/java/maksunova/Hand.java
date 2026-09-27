@@ -20,7 +20,7 @@ public class Hand {
     }
 
     /**
-     * return cards without changes.
+     * return list of cards.
      */
     public List<Card> seeCards() {
         return Collections.unmodifiableList(hand);
