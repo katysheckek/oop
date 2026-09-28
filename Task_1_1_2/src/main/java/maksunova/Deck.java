@@ -37,7 +37,7 @@ public class Deck {
             throw new IllegalStateException("Пустая колода");
         }
 
-        return cards.remove(cards.size() - 1);
+        return cards.removeLast();
     }
 
     /**

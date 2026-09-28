@@ -3,6 +3,9 @@ package maksunova;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * tests cover the Hand class logic
+ */
 public class HandTest {
 
     @Test
@@ -12,7 +15,7 @@ public class HandTest {
         hand.takeCard(card);
 
         assertEquals(1, hand.seeCards().size());
-        assertEquals(card, hand.seeCards().get(0));
+        assertEquals(card, hand.seeCards().getFirst());
     }
 
     @Test
@@ -20,7 +23,8 @@ public class HandTest {
         Hand hand = new Hand();
         hand.takeCard(new Card(Rank.ACE, Suit.HEARTS));
 
-        assertThrows( UnsupportedOperationException.class, () -> hand.seeCards().clear() ); // predefined action
+        assertThrows(UnsupportedOperationException.class,
+                () -> hand.seeCards().clear()); // predefined action
     }
 
     /// SCORE ///

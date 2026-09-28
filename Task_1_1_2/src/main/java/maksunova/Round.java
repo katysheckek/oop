@@ -74,7 +74,8 @@ public class Round {
             showHandsHiddenDealer();
 
             if (player.seeHand().isOver21()) {
-                System.out.println("Вы набрали больше 21. Вы проиграли раунд!");
+                System.out.println(
+                        "Вы набрали больше 21. Вы проиграли раунд!");
                 return -1;
             }
         }
@@ -105,7 +106,8 @@ public class Round {
         // dealler has a score over 21.
         if (dealer.seeHand().isOver21()) {
             System.out.println();
-            System.out.println("Дилер набрал больше 21. Вы выиграли раунд!");
+            System.out.println(
+                    "Дилер набрал больше 21. Вы выиграли раунд!");
             return 1;
         }
 
@@ -150,12 +152,13 @@ public class Round {
                         + player.seeHand().seeScore()
         );
 
-        Card dealerFirstCard = dealer.seeHand().seeCards().get(0);
+        Card dealerFirstCard = dealer.seeHand().seeCards().getFirst();
 
         System.out.println(
                 "Карты дилера: ["
                         + dealerFirstCard.name()
-                        + " (" + getCardScore(dealerFirstCard, dealer.seeHand()) + "), "
+                        + " (" +
+                        getCardScore(dealerFirstCard, dealer.seeHand()) + "), "
                         + "<закрытая карта]"
         );
     }

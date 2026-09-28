@@ -3,6 +3,10 @@ package maksunova;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+
+/**
+ * tests covers the dealer logic.
+ */
 public class DealerTest {
 
     @Test
