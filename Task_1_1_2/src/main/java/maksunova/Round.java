@@ -37,9 +37,9 @@ public class Round {
      * start a round.
      *
      * @return result:
-     * 1 player wins,
-     * 0 equal,
-     * -1 diller wins
+     *     1 player wins,
+     *     0 equal,
+     *     -1 diller wins
      */
     public int play() {
 

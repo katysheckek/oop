@@ -1,6 +1,5 @@
 package maksunova;
 
-
 import maksunova.card.Card;
 import maksunova.card.Rank;
 
