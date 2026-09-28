@@ -29,9 +29,9 @@ public class Hand {
     /**
      * calculate the hand score.
      *
-     * Ace = 11 points.
+     * <p>Ace = 11 points.
      * if sum is grater than 21, Aces turn to 1
-     * by the queue.
+     * by the queue.</p>
      */
     public int seeScore() {
         int mainScore = 0;
@@ -70,7 +70,8 @@ public class Hand {
     }
 
     /**
-     * how to expose the ace
+     * how to expose the ace.
+     *
      * @return the way how to expose, as 1 or as 11
      */
     public boolean hasAceAsEleven() {

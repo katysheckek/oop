@@ -5,7 +5,7 @@ package maksunova;
  */
 public enum Rank {
     TWO("Двойка", 2),
-    THREE("Тройка" , 3),
+    THREE("Тройка", 3),
     FOUR("Четверка", 4),
     FIVE("Пятерка", 5),
     SIX("Шестерка", 6),
@@ -29,6 +29,7 @@ public enum Rank {
     public String getName() {
         return name;
     }
+
     public int getScore() {
         return value;
     }

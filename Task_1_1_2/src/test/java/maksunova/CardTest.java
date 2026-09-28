@@ -1,8 +1,11 @@
 package maksunova;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * tests cover Card class.
+ */
 public class CardTest {
 
     @Test
@@ -46,6 +49,7 @@ public class CardTest {
         Card card = new Card(Rank.ACE, Suit.CLUBS);
         assertEquals("Туз Трефы", card.name());
     }
+
     @Test
     void toStringShouldReturnCardName() {
         Card card = new Card(Rank.TEN, Suit.HEARTS);

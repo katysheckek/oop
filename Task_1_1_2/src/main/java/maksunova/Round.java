@@ -10,6 +10,14 @@ public class Round {
     private final Dealer dealer;
     private final ConsoleInteraction console;
 
+    /**
+     * round structure.
+     *
+     * @param deck deck
+     * @param player player
+     * @param dealer dealer
+     * @param console console interaction
+     */
     public Round(
             Deck deck,
             Player player,
@@ -146,13 +154,13 @@ public class Round {
      */
     private void showHandsHiddenDealer() {
         System.out.println(
-                "Ваши карты: "
-                        + formatHand(player.seeHand())
-                        + " > "
-                        + player.seeHand().seeScore()
+                "Ваши карты: " +
+                        formatHand(player.seeHand()) +
+                        " > " +
+                        player.seeHand().seeScore()
         );
 
-        Card dealerFirstCard = dealer.seeHand().seeCards().getFirst();
+        Card dealerFirstCard = dealer.seeHand().seeCards().get(0);
 
         System.out.println(
                 "Карты дилера: ["

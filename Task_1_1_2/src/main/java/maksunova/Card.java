@@ -1,7 +1,7 @@
 package maksunova;
 
 /**
- *
+ * Represents a playing card with a rank and a suit.
  */
 public class Card {
 

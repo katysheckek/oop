@@ -52,11 +52,14 @@ public class Game {
                             + dealerWins
             );
             if (playerWins > dealerWins) {
-                System.out.println(" в вашу пользу."); }
+                System.out.println(" в вашу пользу.");
+            }
             else if (playerWins < dealerWins) {
                 System.out.println(" в пользу диллера.");
             }
-            else { System.out.println(); }
+            else {
+                System.out.println();
+            }
 
             roundNum++;
 

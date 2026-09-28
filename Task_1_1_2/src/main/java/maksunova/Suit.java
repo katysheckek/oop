@@ -22,9 +22,11 @@ public enum Suit {
     public String getName_b() {
         return basename;
     }
+
     public String getName_m() {
         return malename;
     }
+
     public String getName_f() {
         return femalename;
     }
