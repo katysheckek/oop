@@ -1,5 +1,8 @@
 package maksunova;
 
+import maksunova.card.Card;
+import maksunova.card.Rank;
+
 /**
  * one round frame.
  */
@@ -13,9 +16,9 @@ public class Round {
     /**
      * round structure.
      *
-     * @param deck deck
-     * @param player player
-     * @param dealer dealer
+     * @param deck    deck
+     * @param player  player
+     * @param dealer  dealer
      * @param console console interaction
      */
     public Round(
@@ -34,9 +37,9 @@ public class Round {
      * start a round.
      *
      * @return result:
-     *         1 player wins,
-     *         0 equal,
-     *         -1 diller wins
+     * 1 player wins,
+     * 0 equal,
+     * -1 diller wins
      */
     public int play() {
 
@@ -154,10 +157,10 @@ public class Round {
      */
     private void showHandsHiddenDealer() {
         System.out.println(
-                "Ваши карты: " +
-                        formatHand(player.seeHand()) +
-                        " > " +
-                        player.seeHand().seeScore()
+                "Ваши карты: "
+                        + formatHand(player.seeHand())
+                        + " > "
+                        + player.seeHand().seeScore()
         );
 
         Card dealerFirstCard = dealer.seeHand().seeCards().get(0);
@@ -165,8 +168,8 @@ public class Round {
         System.out.println(
                 "Карты дилера: ["
                         + dealerFirstCard.name()
-                        + " (" +
-                        getCardScore(dealerFirstCard, dealer.seeHand()) + "), "
+                        + " ("
+                        + getCardScore(dealerFirstCard, dealer.seeHand()) + "), "
                         + "<закрытая карта]"
         );
     }

@@ -1,7 +1,11 @@
 package maksunova;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import maksunova.card.Card;
+import maksunova.card.Rank;
+import maksunova.card.Suit;
+import org.junit.jupiter.api.Test;
 
 /**
  * tests cover Card class.

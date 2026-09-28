@@ -1,4 +1,4 @@
-package maksunova;
+package maksunova.card;
 
 /**
  * all possible ranking of the card.

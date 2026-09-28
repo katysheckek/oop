@@ -1,4 +1,4 @@
-package maksunova;
+package maksunova.card;
 
 /**
  * Represents a playing card with a rank and a suit.

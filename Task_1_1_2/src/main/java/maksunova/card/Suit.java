@@ -1,4 +1,4 @@
-package maksunova;
+package maksunova.card;
 
 /**
  * all 4 suits the card can hold.

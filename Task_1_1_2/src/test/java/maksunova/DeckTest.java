@@ -1,8 +1,12 @@
 package maksunova;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import maksunova.card.Card;
+import maksunova.card.Rank;
+import maksunova.card.Suit;
+import org.junit.jupiter.api.Test;
 
 /**
  * tests cover Deck logic.
@@ -107,7 +111,7 @@ public class DeckTest {
                 suitval = 3;
             }
 
-            int cardId = rankval + ( 13 * suitval );
+            int cardId = rankval + (13 * suitval);
             sumcards += cardId;
         } // 0+1+2+...+51 = 1326
         assertEquals(1326, sumcards);

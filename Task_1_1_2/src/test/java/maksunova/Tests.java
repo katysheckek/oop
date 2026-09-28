@@ -1,9 +1,13 @@
 package maksunova;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import maksunova.card.Card;
+import maksunova.card.Rank;
+import maksunova.card.Suit;
+import org.junit.jupiter.api.Test;
 
 class Tests {
 
@@ -58,7 +62,8 @@ class Tests {
         assertTrue(dealer.shouldTakeCard());
     }
 
-    @Test void testDealerStopsAt17() {
+    @Test
+    void testDealerStopsAt17() {
         Dealer dealer = new Dealer();
         dealer.takeCard(new Card(Rank.TEN, Suit.HEARTS));
         dealer.takeCard(new Card(Rank.SEVEN, Suit.SPADES));

@@ -26,7 +26,6 @@ public class ConsoleInteraction {
             if (action == 0 || action == 1) {
                 return action;
             }
-
             System.out.println("Введите 1 или 0.");
         }
     }
@@ -54,5 +53,5 @@ public class ConsoleInteraction {
             System.out.println("Введите 1 или 0.");
         }
     }
-    
+
 }

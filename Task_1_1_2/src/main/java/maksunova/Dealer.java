@@ -1,5 +1,7 @@
 package maksunova;
 
+import maksunova.card.Card;
+
 /**
  * Dealer.
  */

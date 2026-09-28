@@ -1,6 +1,9 @@
 package maksunova;
 
 
+import maksunova.card.Card;
+import maksunova.card.Rank;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

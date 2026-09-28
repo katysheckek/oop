@@ -53,11 +53,9 @@ public class Game {
             );
             if (playerWins > dealerWins) {
                 System.out.println(" в вашу пользу.");
-            }
-            else if (playerWins < dealerWins) {
+            } else if (playerWins < dealerWins) {
                 System.out.println(" в пользу диллера.");
-            }
-            else {
+            } else {
                 System.out.println();
             }
 

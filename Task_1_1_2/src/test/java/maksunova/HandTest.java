@@ -1,12 +1,14 @@
 package maksunova;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import maksunova.card.Card;
+import maksunova.card.Rank;
+import maksunova.card.Suit;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -21,7 +23,7 @@ public class HandTest {
         hand.takeCard(card);
 
         assertEquals(1, hand.seeCards().size());
-        assertEquals(card, hand.seeCards().getFirst());
+        assertEquals(card, hand.seeCards().get(0));
     }
 
     @Test
