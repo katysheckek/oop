@@ -26,7 +26,7 @@ public class CardTest {
     @Test
     void queenShouldHaveCorrectName() {
         Card card = new Card(Rank.QUEEN, Suit.SPADES);
-        assertEquals("Пиковая дама", card.name());
+        assertEquals("Пиковая королева", card.name());
     }
 
     @Test
