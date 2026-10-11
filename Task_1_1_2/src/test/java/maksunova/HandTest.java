@@ -4,15 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
 
 import maksunova.card.Card;
 import maksunova.card.Rank;
 import maksunova.card.Suit;
 import maksunova.hand.Hand;
 
-
-
+import org.junit.jupiter.api.Test;
 
 class HandTest {
 
