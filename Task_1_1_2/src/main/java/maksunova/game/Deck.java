@@ -29,6 +29,10 @@ public class Deck {
         Collections.shuffle(cards);
     }
 
+    public Deck(List<Card> cards) {
+        this.cards = new ArrayList<>(cards);
+    }
+
     /**
      * pulls out a card from the top.
      *

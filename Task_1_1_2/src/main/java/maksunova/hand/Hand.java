@@ -28,7 +28,10 @@ public class Hand {
         return Collections.unmodifiableList(cards);
     }
 
-    public void clear() { cards.clear(); }
+    public void clear() {
+        cards.clear();
+    }
+
     /**
      * calculate the hand score.
      *
