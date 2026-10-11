@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import maksunova.card.Card;
 import maksunova.card.Rank;
 import maksunova.card.Suit;
+import maksunova.game.Deck;
+import maksunova.hand.Dealer;
+import maksunova.hand.Hand;
 import org.junit.jupiter.api.Test;
 
 class Tests {
@@ -32,7 +35,7 @@ class Tests {
         Hand hand = new Hand();
         hand.takeCard(new Card(Rank.ACE, Suit.HEARTS));
         hand.takeCard(new Card(Rank.NINE, Suit.SPADES));
-        assertEquals(20, hand.seeScore());
+        assertEquals(20, hand.getScore());
         assertFalse(hand.isOver21());
     }
 
@@ -50,7 +53,7 @@ class Tests {
         hand.takeCard(new Card(Rank.ACE, Suit.HEARTS));
         hand.takeCard(new Card(Rank.KING, Suit.SPADES));
         hand.takeCard(new Card(Rank.FIVE, Suit.CLUBS));
-        assertEquals(16, hand.seeScore());
+        assertEquals(16, hand.getScore());
     }
 
     @Test
@@ -58,7 +61,7 @@ class Tests {
         Dealer dealer = new Dealer();
         dealer.takeCard(new Card(Rank.TEN, Suit.HEARTS));
         dealer.takeCard(new Card(Rank.FIVE, Suit.SPADES));
-        assertEquals(15, dealer.seeHand().seeScore());
+        assertEquals(15, dealer.getHand().getScore());
         assertTrue(dealer.shouldTakeCard());
     }
 
@@ -67,7 +70,7 @@ class Tests {
         Dealer dealer = new Dealer();
         dealer.takeCard(new Card(Rank.TEN, Suit.HEARTS));
         dealer.takeCard(new Card(Rank.SEVEN, Suit.SPADES));
-        assertEquals(17, dealer.seeHand().seeScore());
+        assertEquals(17, dealer.getHand().getScore());
         assertFalse(dealer.shouldTakeCard());
     }
 

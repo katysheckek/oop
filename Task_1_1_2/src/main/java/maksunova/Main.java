@@ -1,6 +1,8 @@
 package maksunova;
 
 
+import maksunova.game.console.ConsoleInteraction;
+import maksunova.game.logic.Game;
 
 /**
  * enter the progrm.

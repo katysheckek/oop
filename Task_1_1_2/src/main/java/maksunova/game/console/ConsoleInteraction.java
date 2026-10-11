@@ -1,4 +1,4 @@
-package maksunova;
+package maksunova.game.console;
 
 import java.util.Scanner;
 
@@ -8,25 +8,24 @@ import java.util.Scanner;
 public class ConsoleInteraction {
 
     private final Scanner scanner = new Scanner(System.in);
-
+    String action;
     /**
      * ask for action.
      *
      * @return 1, player want to take another card, 0, stop
      */
-    public int askAction() {
+    public boolean askAction() {
         while (true) {
             System.out.println(
                     "Введите \"1\", чтобы взять карту, и \"0\", чтобы остановиться"
             );
             System.out.print(". ");
 
-            int action = scanner.nextInt();
+            action = scanner.next();
 
-            if (action == 0 || action == 1) {
-                return action;
+            if (action.equals("1") || action.equals("0")) {
+                return action.equals("1");
             }
-            System.out.println("Введите 1 или 0.");
         }
     }
 
@@ -40,18 +39,13 @@ public class ConsoleInteraction {
             System.out.println("\"1\", чтобы продолжить, \"0\", чтобы выйти");
             System.out.print(". ");
 
-            int answer = scanner.nextInt();
+            action = scanner.next();
 
-            if (answer == 1) {
-                return true;
+            if (action.equals("1") || action.equals("0")) {
+                return action.equals("1");
             }
 
-            if (answer == 0) {
-                return false;
-            }
-
-            System.out.println("Введите 1 или 0.");
+            System.out.println("Введите \"1\" или \"0\".");
         }
     }
-
 }

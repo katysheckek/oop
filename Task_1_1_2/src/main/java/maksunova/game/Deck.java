@@ -1,4 +1,4 @@
-package maksunova;
+package maksunova.game;
 
 import maksunova.card.Card;
 import maksunova.card.Rank;

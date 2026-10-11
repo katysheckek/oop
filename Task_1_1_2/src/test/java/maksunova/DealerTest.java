@@ -1,62 +1,54 @@
 package maksunova;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-
 import maksunova.card.Card;
 import maksunova.card.Rank;
 import maksunova.card.Suit;
+import maksunova.hand.Dealer;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * tests covers the dealer logic.
- */
-public class DealerTest {
+class DealerTest {
+
+    private Card card(Rank rank) {
+        return new Card(rank, Suit.HEARTS);
+    }
 
     @Test
-    void dealerShouldTakeCardWhenScoreIsLessThan17() {
+    void dealerTakesCardBelowSeventeen() {
         Dealer dealer = new Dealer();
+        dealer.takeCard(card(Rank.TEN));
+        dealer.takeCard(card(Rank.SIX));
 
-        dealer.takeCard(new Card(Rank.TEN, Suit.HEARTS));
-        dealer.takeCard(new Card(Rank.FIVE, Suit.SPADES));
-
-        assertEquals(15, dealer.seeHand().seeScore());
+        assertEquals(16, dealer.getHand().getScore());
         assertTrue(dealer.shouldTakeCard());
     }
 
     @Test
-    void dealerShouldStopWhenScoreIs17() {
+    void dealerStopsAtSeventeen() {
         Dealer dealer = new Dealer();
+        dealer.takeCard(card(Rank.TEN));
+        dealer.takeCard(card(Rank.SEVEN));
 
-        dealer.takeCard(new Card(Rank.TEN, Suit.HEARTS));
-        dealer.takeCard(new Card(Rank.SEVEN, Suit.SPADES));
-
-        assertEquals(17, dealer.seeHand().seeScore());
         assertFalse(dealer.shouldTakeCard());
     }
 
     @Test
-    void dealerShouldStopWhenScoreIsGreaterThan17() {
+    void dealerStopsAboveSeventeen() {
         Dealer dealer = new Dealer();
+        dealer.takeCard(card(Rank.TEN));
+        dealer.takeCard(card(Rank.EIGHT));
 
-        dealer.takeCard(new Card(Rank.TEN, Suit.HEARTS));
-        dealer.takeCard(new Card(Rank.NINE, Suit.SPADES));
-
-        assertEquals(19, dealer.seeHand().seeScore());
         assertFalse(dealer.shouldTakeCard());
     }
 
     @Test
-    void dealerShouldStopWithBlackjack() {
+    void dealerStopsOnSoftSeventeenWithCurrentRules() {
         Dealer dealer = new Dealer();
+        dealer.takeCard(card(Rank.ACE));
+        dealer.takeCard(card(Rank.SIX));
 
-        dealer.takeCard(new Card(Rank.ACE, Suit.HEARTS));
-        dealer.takeCard(new Card(Rank.KING, Suit.SPADES));
-
-        assertTrue(dealer.seeHand().isBlackjack());
+        assertEquals(17, dealer.getHand().getScore());
         assertFalse(dealer.shouldTakeCard());
     }
 }

@@ -19,15 +19,15 @@ public enum Suit {
         this.femalename = femalename;
     }
 
-    public String getName_b() {
+    public String getNameB() {
         return basename;
     }
 
-    public String getName_m() {
+    public String getNameM() {
         return malename;
     }
 
-    public String getName_f() {
+    public String getNameF() {
         return femalename;
     }
 }

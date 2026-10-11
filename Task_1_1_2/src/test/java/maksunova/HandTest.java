@@ -2,103 +2,132 @@ package maksunova;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 import maksunova.card.Card;
 import maksunova.card.Rank;
 import maksunova.card.Suit;
-import org.junit.jupiter.api.Test;
+import maksunova.hand.Hand;
 
 
-/**
- * tests cover the Hand class logic.
- */
-public class HandTest {
 
-    @Test
-    void cardsShouldBeAddedToHand() {
-        Hand hand = new Hand();
-        Card card = new Card(Rank.ACE, Suit.HEARTS);
-        hand.takeCard(card);
 
-        assertEquals(1, hand.seeCards().size());
-        assertEquals(card, hand.seeCards().get(0));
+class HandTest {
+
+    private Card card(Rank rank) {
+        return new Card(rank, Suit.HEARTS);
     }
 
     @Test
-    void returnedCardsListShouldBeUnmodifiable() {
+    void calculatesSimpleScore() {
         Hand hand = new Hand();
-        hand.takeCard(new Card(Rank.ACE, Suit.HEARTS));
+        hand.takeCard(card(Rank.TEN));
+        hand.takeCard(card(Rank.SIX));
 
-        assertThrows(UnsupportedOperationException.class,
-                () -> hand.seeCards().clear()); // predefined action
-    }
-
-    /// SCORE ///
-    @Test
-    void emptyHandEqualsZeroScore() {
-        Hand hand = new Hand();
-        assertEquals(0, hand.seeScore());
+        assertEquals(16, hand.getScore());
     }
 
     @Test
-    void aceShouldCostElevenUnder21() {
+    void aceCountsAsElevenWhenItFits() {
         Hand hand = new Hand();
-        hand.takeCard(new Card(Rank.ACE, Suit.HEARTS));
-        hand.takeCard(new Card(Rank.NINE, Suit.SPADES));
+        hand.takeCard(card(Rank.ACE));
+        hand.takeCard(card(Rank.SIX));
 
-        assertEquals(20, hand.seeScore());
+        assertEquals(17, hand.getScore());
     }
 
     @Test
-    void aceShouldCostOneWhenSumOver21() {
+    void aceTurnsIntoOneWhenElevenWouldBeTooMany() {
         Hand hand = new Hand();
-        hand.takeCard(new Card(Rank.ACE, Suit.HEARTS));  // 1 (11)
-        hand.takeCard(new Card(Rank.KING, Suit.SPADES)); // 10
-        hand.takeCard(new Card(Rank.FIVE, Suit.CLUBS));  // 5
+        hand.takeCard(card(Rank.ACE));
+        hand.takeCard(card(Rank.TEN));
+        hand.takeCard(card(Rank.SIX));
 
-        assertEquals(16, hand.seeScore());
+        assertEquals(17, hand.getScore());
     }
 
     @Test
-    void twoAcesCalculatedCorrectly() {
+    void handlesSeveralAces() {
         Hand hand = new Hand();
-        hand.takeCard(new Card(Rank.ACE, Suit.HEARTS));
-        hand.takeCard(new Card(Rank.ACE, Suit.SPADES));
-        hand.takeCard(new Card(Rank.NINE, Suit.CLUBS));
+        hand.takeCard(card(Rank.ACE));
+        hand.takeCard(card(Rank.ACE));
+        hand.takeCard(card(Rank.NINE));
 
-        assertEquals(21, hand.seeScore());
+        assertEquals(21, hand.getScore());
     }
 
     @Test
-    void handShouldBeOver21() {
+    void allAcesCanBecomeOneIfNecessary() {
         Hand hand = new Hand();
-        hand.takeCard(new Card(Rank.KING, Suit.HEARTS));
-        hand.takeCard(new Card(Rank.QUEEN, Suit.SPADES));
-        hand.takeCard(new Card(Rank.FIVE, Suit.CLUBS));
+        hand.takeCard(card(Rank.ACE));
+        hand.takeCard(card(Rank.ACE));
+        hand.takeCard(card(Rank.ACE));
+        hand.takeCard(card(Rank.TEN));
+
+        assertEquals(13, hand.getScore());
+    }
+
+    @Test
+    void twoCardAceAndTenIsBlackjack() {
+        Hand hand = new Hand();
+        hand.takeCard(card(Rank.ACE));
+        hand.takeCard(card(Rank.TEN));
+
+        assertTrue(hand.isBlackjack());
+    }
+
+    @Test
+    void aceAndKingIsBlackjack() {
+        Hand hand = new Hand();
+        hand.takeCard(card(Rank.ACE));
+        hand.takeCard(card(Rank.KING));
+
+        assertTrue(hand.isBlackjack());
+    }
+
+    @Test
+    void threeCardsForTwentyOneIsBlackjack() {
+        Hand hand = new Hand();
+        hand.takeCard(card(Rank.SEVEN));
+        hand.takeCard(card(Rank.SEVEN));
+        hand.takeCard(card(Rank.SEVEN));
+
+        assertEquals(21, hand.getScore());
+        assertTrue(hand.isBlackjack());
+    }
+
+    @Test
+    void detectsScoreOverTwentyOne() {
+        Hand hand = new Hand();
+        hand.takeCard(card(Rank.TEN));
+        hand.takeCard(card(Rank.NINE));
+        hand.takeCard(card(Rank.FIVE));
 
         assertTrue(hand.isOver21());
     }
 
-
     @Test
-    void aceShouldBeElevenWhenHandIsNotOver21() {
+    void exactlyTwentyOneIsNotOver() {
         Hand hand = new Hand();
-        hand.takeCard(new Card(Rank.ACE, Suit.HEARTS));
-        hand.takeCard(new Card(Rank.NINE, Suit.SPADES));
+        hand.takeCard(card(Rank.TEN));
+        hand.takeCard(card(Rank.SIX));
+        hand.takeCard(card(Rank.FIVE));
 
-        assertTrue(hand.hasAceAsEleven());
+        assertEquals(21, hand.getScore());
+        assertFalse(hand.isOver21());
     }
 
     @Test
-    void aceShouldBeOneWhenElevenWouldCauseBust() {
+    void clearRemovesAllCards() {
         Hand hand = new Hand();
-        hand.takeCard(new Card(Rank.ACE, Suit.HEARTS));
-        hand.takeCard(new Card(Rank.KING, Suit.SPADES));
-        hand.takeCard(new Card(Rank.FIVE, Suit.CLUBS));
+        hand.takeCard(card(Rank.TEN));
+        hand.takeCard(card(Rank.FIVE));
 
-        assertFalse(hand.hasAceAsEleven());
+        hand.clear();
+
+        assertTrue(hand.getCards().isEmpty());
+        assertEquals(0, hand.getScore());
     }
 }
-

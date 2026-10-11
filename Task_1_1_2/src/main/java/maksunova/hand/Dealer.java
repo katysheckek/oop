@@ -1,14 +1,14 @@
-package maksunova;
+package maksunova.hand;
 
 import maksunova.card.Card;
 
 /**
- * Dealer.
+ * Dealer hand realization.
  */
 public class Dealer {
     public final Hand hand = new Hand();
 
-    public Hand seeHand() {
+    public Hand getHand() {
         return hand;
     }
 
@@ -22,6 +22,6 @@ public class Dealer {
      * @return true, if score less than 17
      */
     public boolean shouldTakeCard() {
-        return hand.seeScore() < 17;
+        return hand.getScore() < 17;
     }
 }

@@ -26,14 +26,14 @@ public class Card {
      */
     public String name() {
         if (rank == Rank.JACK || rank == Rank.KING) {
-            return suit.getName_m() + " " + rank.getName();
+            return suit.getNameM() + " " + rank.getName();
         }
 
         if (rank == Rank.QUEEN) {
-            return suit.getName_f() + " " + rank.getName();
+            return suit.getNameF() + " " + rank.getName();
         }
 
-        return rank.getName() + " " + suit.getName_b();
+        return rank.getName() + " " + suit.getNameB();
     }
 
 
