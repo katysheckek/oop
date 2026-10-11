@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"maksunova"},{"l":"maksunova.card"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"maksunova"},{"l":"maksunova.card"},{"l":"maksunova.game"},{"l":"maksunova.game.console"},{"l":"maksunova.game.logic"},{"l":"maksunova.hand"}];updateSearchResults();
