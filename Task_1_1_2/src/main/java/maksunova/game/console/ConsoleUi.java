@@ -5,7 +5,7 @@ import maksunova.hand.Hand;
 import maksunova.hand.Player;
 import maksunova.hand.Dealer;
 
-public class ConsoleUI {
+public class ConsoleUi {
 
     /**
      * print set of cards, player and dealer hand (closed card).

@@ -3,7 +3,7 @@ package maksunova.game.logic;
 import maksunova.game.Deck;
 import maksunova.game.ResOfTheGame;
 import maksunova.game.console.ConsoleInteraction;
-import maksunova.game.console.ConsoleUI;
+import maksunova.game.console.ConsoleUi;
 import maksunova.hand.Dealer;
 import maksunova.hand.Player;
 
@@ -45,12 +45,12 @@ public class Game {
 
             //
             System.out.println("Дилер раздал карты");
-            ConsoleUI.showHandsHiddenDealer(player, dealer);
+            ConsoleUi.showHandsHiddenDealer(player, dealer);
 
             ResOfTheGame result = round.checkInitialBlackjack();
 
             if (result == ResOfTheGame.LOSE) {
-                ConsoleUI.revealDealerCard(player, dealer);
+                ConsoleUi.revealDealerCard(player, dealer);
             }
 
             if (result == ResOfTheGame.UNDEF) {
@@ -60,7 +60,7 @@ public class Game {
                     boolean wantsHit = console.askAction();
                     if (wantsHit) {
                         round.playerHit();
-                        ConsoleUI.showHandsHiddenDealer(player, dealer);
+                        ConsoleUi.showHandsHiddenDealer(player, dealer);
 
                         if (player.getHand().isOver21()) {
                             System.out.println("Вы набрали больше 21. Вы проиграли раунд!");
@@ -75,10 +75,10 @@ public class Game {
                 // ход дилера (если игрок не перебрал)
                 if (result == ResOfTheGame.UNDEF) {
                     System.out.println("\nХод дилера\n-------");
-                    ConsoleUI.revealDealerCard(player, dealer);
+                    ConsoleUi.revealDealerCard(player, dealer);
 
                     round.dealerTurn();
-                    ConsoleUI.showHandsOpenDealer(player, dealer);
+                    ConsoleUi.showHandsOpenDealer(player, dealer);
 
                     result = round.evaluateResult();
                 }

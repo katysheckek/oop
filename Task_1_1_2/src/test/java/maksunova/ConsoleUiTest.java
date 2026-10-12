@@ -1,24 +1,27 @@
 package maksunova;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import java.io.ByteArrayOutputStream;
 import maksunova.card.Card;
+import maksunova.game.console.ConsoleUi;
+import maksunova.hand.Dealer;
 import maksunova.card.Rank;
 import maksunova.card.Suit;
-import maksunova.game.console.ConsoleUI;
-import maksunova.hand.Dealer;
 import maksunova.hand.Player;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-class ConsoleUITest {
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class ConsoleUinterTest {
 
     private final PrintStream originalOut = System.out;
     private ByteArrayOutputStream captured;
+    ConsoleUi consoleUi;
 
     @BeforeEach
     void setUp() {
@@ -60,7 +63,7 @@ class ConsoleUITest {
         Player player = playerWith(card(Rank.TEN), card(Rank.SEVEN));
         Dealer dealer = dealerWith(card(Rank.ACE), card(Rank.FIVE));
 
-        ConsoleUI.showHandsHiddenDealer(player, dealer);
+        consoleUi.showHandsHiddenDealer(player, dealer);
 
         String out = output();
         assertTrue(out.contains("Ваши карты:"));
@@ -72,7 +75,7 @@ class ConsoleUITest {
         Player player = playerWith(card(Rank.TEN), card(Rank.SEVEN));
         Dealer dealer = dealerWith(card(Rank.ACE), card(Rank.FIVE));
 
-        ConsoleUI.showHandsHiddenDealer(player, dealer);
+        consoleUi.showHandsHiddenDealer(player, dealer);
 
         assertTrue(output().contains("<закрытая карта]"));
     }
@@ -82,7 +85,7 @@ class ConsoleUITest {
         Player player = playerWith(card(Rank.TEN), card(Rank.SEVEN));
         Dealer dealer = dealerWith(card(Rank.ACE), card(Rank.FIVE));
 
-        ConsoleUI.showHandsOpenDealer(player, dealer);
+        consoleUi.showHandsOpenDealer(player, dealer);
 
         String out = output();
         assertTrue(out.contains("Ваши карты:"));
@@ -96,7 +99,7 @@ class ConsoleUITest {
         Player player = playerWith(card(Rank.TEN), card(Rank.SEVEN));
         Dealer dealer = dealerWith(card(Rank.ACE), card(Rank.FIVE));
 
-        ConsoleUI.revealDealerCard(player, dealer);
+        consoleUi.revealDealerCard(player, dealer);
 
         assertTrue(output().contains("Дилер открывает закрытую карту"));
     }
@@ -106,7 +109,8 @@ class ConsoleUITest {
         Player player = playerWith();
         Dealer dealer = dealerWith(card(Rank.ACE), card(Rank.FIVE));
 
-        ConsoleUI.showHandsOpenDealer(player, dealer);
+
+        consoleUi.showHandsOpenDealer(player, dealer);
 
         assertTrue(output().contains("[]"));
     }
