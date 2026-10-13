@@ -41,7 +41,7 @@ public class Deck {
      */
     public Card pullout() {
         if (cards.isEmpty()) {
-            throw new IllegalStateException("Пустая колода");
+            throw new IllegalStateException("Пустая колода"); // unchecked exception
         }
 
         return cards.remove(cards.size() - 1);

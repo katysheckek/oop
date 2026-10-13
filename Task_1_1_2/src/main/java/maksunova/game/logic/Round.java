@@ -30,6 +30,8 @@ public class Round {
         giveCards();
     }
 
+    public Deck getDeck() { return this.deck; }
+
     /**
      * Player move: take card from the deck.
      * @return taken card
@@ -53,6 +55,9 @@ public class Round {
      * chrck instant blackjack.
      */
     public ResOfTheGame checkInitialBlackjack() {
+        if (player.getHand().isBlackjack() && dealer.getHand().isBlackjack()) {
+            return ResOfTheGame.DRAW;
+        }
         if (player.getHand().isBlackjack()) {
             return ResOfTheGame.WIN;
         }
@@ -68,9 +73,9 @@ public class Round {
      */
     private void giveCards() {
         player.takeCard(deck.pullout());
-        dealer.takeCard(deck.pullout());
-
         player.takeCard(deck.pullout());
+
+        dealer.takeCard(deck.pullout());
         dealer.takeCard(deck.pullout());
     }
 
