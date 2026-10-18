@@ -23,8 +23,20 @@ class MulTest {
     @Test
     void testEval() {
         // 3 * 4 = 12
-        Mul mul = new Mul(new Number(3), new Number(4));
-        assertEquals(12, mul.eval(Map.of()));
+        Mul mul = new Mul(new Number(3), new Number(4)); // 3*4
+        assertEquals(12, mul.eval());
+
+        mul = new Mul(new Number(-3), new Number(4));    // -3*4
+        assertEquals(-12, mul.eval());
+
+        mul = new Mul(new Number(3), new Number(0));    // 3*0
+        assertEquals(0, mul.eval());
+
+        mul = new Mul(new Number(-3), new Number(0));    // -3*0
+        assertEquals(0, mul.eval());
+
+        mul = new Mul(new Number(-3), new Number(-4));    // -3*-4
+        assertEquals(12, mul.eval());
 
         // 2 * x, где x = 5 -> 10
         Mul mulWithVar = new Mul(new Number(2), new Variable("x"));
