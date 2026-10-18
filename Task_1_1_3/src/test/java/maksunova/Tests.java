@@ -1,17 +1,51 @@
 package maksunova;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Tests {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+import maksunova.expression.Expression;
+import maksunova.expression.Number;
+import maksunova.expression.Variable;
+import maksunova.operation.Add;
+import maksunova.operation.Mul;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Набор юнит-тестов для проверки работы математических выражений.
+ */
+public class Tests {
+
+    /**
+     * Конструктор по умолчанию для класса тестов.
+     */
+    public Tests() {
+    }
+
+    /**
+     * Проверяет корректность строкового представления выражения (печать).
+     */
+    @Test
+    public void testPrintExpression() {
+        Expression e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
+        assertEquals("(3+(2*x))", e.print());
+    }
+
+    /**
+     * Проверяет правильность вычисления значения выражения с подстановкой переменных.
+     */
+    @Test
+    public void testEvaluateExpression() {
+        Expression e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
+        int result = e.eval("x = 10");
+        assertEquals(23, result);
+    }
+
+    /**
+     * Проверяет корректность символьного дифференцирования выражения.
+     */
+    @Test
+    public void testDerivativeExpression() {
+        Expression e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
+        Expression de = e.derivative("x");
+        assertEquals("(0+((0*x)+(2*1)))", de.print());
     }
 }
