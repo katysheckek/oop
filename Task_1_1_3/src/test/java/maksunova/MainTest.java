@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 /**
  * Набор юнит-тестов для проверки работы математических выражений.
  */
-public class Tests {
+public class MainTest {
 
     /**
      * Конструктор по умолчанию для класса тестов.
      */
-    public Tests() {
+    public MainTest() {
     }
 
     /**

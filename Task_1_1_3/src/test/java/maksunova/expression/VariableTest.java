@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Collections;
 import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 /**
@@ -32,7 +31,9 @@ public class VariableTest {
         Variable variable = new Variable("x");
         Map<String, Integer> vars = Collections.emptyMap();
 
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> variable.eval(vars));
+        RuntimeException exception =
+                assertThrows(RuntimeException.class,
+                () -> variable.eval(vars));
 
         assertEquals("нет такой переменной: x", exception.getMessage());
     }

@@ -1,15 +1,11 @@
 package maksunova.operation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import maksunova.expression.Expression;
 import maksunova.expression.Number;
 import maksunova.expression.Variable;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class AddTest {
     @Test

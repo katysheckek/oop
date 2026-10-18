@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Тест для класса Expression.
+ */
 public class ExpressionTest {
 
     @Test
