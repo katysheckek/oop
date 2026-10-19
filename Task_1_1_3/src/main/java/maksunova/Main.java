@@ -14,8 +14,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
 
@@ -71,7 +69,14 @@ public class Main {
         boolean isWorking = true;
         String choose;
         String expressionStr = "";
-        Path filePath = Path.of("C:\\userr\\intellij projects\\oop_26-27\\oop\\Task_1_1_3\\src\\main\\output.txt");
+
+        Path fpath = Path.of("output.txt");
+        // Path fpath = Paths.get("output.txt");
+
+        // Если файл называется config.json и лежит прямо в корне папки resources
+        // InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("/output.txt");
+        //Path filePath = Path.of("C:\\userr\\intellij projects\\oop_26-27\\oop\\Task_1_1_3\\src\\main\\output.txt");
+    // прописать путь с ресурсов, встроенные методы
 
         Scanner scan = new Scanner(System.in);
         Parser parser = new Parser();
@@ -87,7 +92,7 @@ public class Main {
                     break;
                 } else if (choose.equals("1")) {                    // Файл
                     try {
-                        expressionStr = Files.readString(filePath);
+                        expressionStr = Files.readString(fpath);
                     } catch (IOException exptn) {
                         System.out.println("Файл не найден");
                         break;
@@ -95,7 +100,7 @@ public class Main {
 
                     // пустое или состоящее из пробелов/переводов трок выражение
                     if (expressionStr == null || expressionStr.isBlank()) {
-                        System.out.println("Файл пуст: " + filePath);
+                        System.out.println("Файл пуст: " + fpath);
                         break;
                     }
 
@@ -118,9 +123,9 @@ public class Main {
                     break;
                 } else if (choose.equals("1")) {
                     try {                                                  // Файл
-                        Files.writeString(filePath, e.print());
+                        Files.writeString(fpath, e.print());
                     } catch (IOException exptn) {
-                        System.out.println("Не удалось записать в " + filePath + ": " + exptn.getMessage());
+                        System.out.println("Не удалось записать в " + fpath + ": " + exptn.getMessage());
                         break;
                     }
 
