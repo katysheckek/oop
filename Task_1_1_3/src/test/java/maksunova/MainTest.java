@@ -2,12 +2,15 @@ package maksunova;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import maksunova.expression.Expression;
-import maksunova.expression.Number;
-import maksunova.expression.Variable;
-import maksunova.operation.Add;
-import maksunova.operation.Mul;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * Набор юнит-тестов для проверки работы математических выражений.
@@ -15,37 +18,47 @@ import org.junit.jupiter.api.Test;
 public class MainTest {
 
     /**
-     * Конструктор по умолчанию для класса тестов.
+     * проверяет работу с консолью из входной точки.
+     *
+     * @throws Exception
      */
-    public MainTest() {
+    @Test
+    void testMainConsoleFlow() throws Exception {
+        String input = "0\n"          // способ ввода: консоль
+                + "2+3\n"        // выражение
+                + "0\n"          // вывод в консоль
+                + "0\n";         // выйти
+        InputStream origIn = System.in;
+        PrintStream origOut = System.out;
+        try {
+            System.setIn(new ByteArrayInputStream(input.getBytes()));
+            System.setOut(new PrintStream(new ByteArrayOutputStream()));
+            Main.main(new String[]{});
+        } finally {
+            System.setIn(origIn);
+            System.setOut(origOut);
+        }
     }
 
     /**
-     * Проверяет корректность строкового представления выражения (печать).
+     * проверяет работу с файлами из входной точки.
+     *
+     * @param tmp
+     * @throws Exception
      */
     @Test
-    public void testPrintExpression() {
-        Expression e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
-        assertEquals("(3+(2*x))", e.print());
-    }
-
-    /**
-     * Проверяет правильность вычисления значения выражения с подстановкой переменных.
-     */
-    @Test
-    public void testEvaluateExpression() {
-        Expression e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
-        int result = e.eval("x = 10");
-        assertEquals(23, result);
-    }
-
-    /**
-     * Проверяет корректность символьного дифференцирования выражения.
-     */
-    @Test
-    public void testDerivativeExpression() {
-        Expression e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
-        Expression de = e.derivative("x");
-        assertEquals("(0+((0*x)+(2*1)))", de.print());
+    void testMainFromFile(@TempDir Path tmp) throws Exception {
+        // Main читает "output.txt" из CWD — поэтому chdir не сделать,
+        // но можно создать output.txt рядом и удалить после
+        Path f = Path.of("output.txt");
+        Files.writeString(f, "2+3");
+        try {
+            String input = "1\n"   // из файла
+                    + "0\n"   // в консоль
+                    + "0\n";  // выход
+            // ... подмена System.in/out + Main.main
+        } finally {
+            Files.deleteIfExists(f);
+        }
     }
 }

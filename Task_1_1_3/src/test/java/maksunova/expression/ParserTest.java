@@ -55,4 +55,24 @@ class ParserTest {
             parser.parse("2 + $");
         });
     }
+    @Test
+    void testDivision() {
+        assertEquals(5, parser.parse("10/2").eval());
+    }
+
+    @Test
+    void testVariableWithDigitsAndUnderscore() {
+        assertEquals(7, parser.parse("ab12_cd").eval("ab12_cd=7"));
+    }
+
+    @Test
+    void testTrailingOperatorThrows() {
+        assertThrows(RuntimeException.class, () -> parser.parse("2+"));
+    }
+
+    @Test
+    void testSubtractionBranch() {
+        // проходит по ветке '-' в parseAddSub
+        assertEquals(4, parser.parse("10-3-3").eval());
+    }
 }

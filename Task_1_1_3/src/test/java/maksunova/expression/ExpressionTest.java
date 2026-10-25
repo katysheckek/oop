@@ -46,4 +46,35 @@ public class ExpressionTest {
         assertEquals(7, expr.eval());
         assertEquals(7, expr.eval(""));
     }
+
+    @Test
+    void testEvalStringPairWithoutEquals() {
+        // пара без '=' — пропускается
+        Expression expr = new Variable("x");
+        assertThrows(RuntimeException.class, () -> expr.eval("x")); // x не задан
+    }
+
+    @Test
+    void testEvalStringEmptyKey() {
+        Expression expr = new Variable("x");
+        assertThrows(RuntimeException.class, () -> expr.eval("=5"));
+    }
+
+    @Test
+    void testEvalStringOnlySign() {
+        Expression expr = new Variable("x");
+        assertThrows(RuntimeException.class, () -> expr.eval("x=+"));
+    }
+
+    @Test
+    void testEvalStringUnderscoreStart() {
+        Expression expr = new Variable("_x");
+        assertEquals(3, expr.eval("_x=3"));
+    }
+
+    @Test
+    void testEvalStringKeyStartsWithDigit() {
+        Expression expr = new Variable("x");
+        assertThrows(RuntimeException.class, () -> expr.eval("1x=5"));
+    }
 }
