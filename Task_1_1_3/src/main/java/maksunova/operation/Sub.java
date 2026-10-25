@@ -1,7 +1,7 @@
 package maksunova.operation;
 
-import maksunova.expression.BinaryExpression;
 import java.util.Map;
+import maksunova.expression.BinaryExpression;
 import maksunova.expression.Expression;
 
 /**

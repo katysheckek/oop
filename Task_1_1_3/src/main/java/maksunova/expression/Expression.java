@@ -33,14 +33,6 @@ public abstract class Expression {
     }
 
     /**
-     * Находит производную выражения по заданной переменной.
-     *
-     * @param variable имя переменной, по которой берется производная
-     * @return производная
-     */
-    public abstract Expression derivative(String variable);
-
-    /**
      * Вычисляет значение выражения, принимая строку с присваиваниями.
      * Пример строки: "x=5; y=10"
      *
@@ -63,7 +55,9 @@ public abstract class Expression {
                         try {
                             int value = Integer.parseInt(valStr);
                             vars.put(key, value);
-                        } catch (NumberFormatException ignored) { continue; }
+                        } catch (NumberFormatException ignored) {
+                            continue;
+                        }
                     } else {
                         throw new RuntimeException("Невалидное имя переменной");
                     }
@@ -72,6 +66,14 @@ public abstract class Expression {
         }
         return eval(vars);
     }
+
+    /**
+     * Находит производную выражения по заданной переменной.
+     *
+     * @param variable имя переменной, по которой берется производная
+     * @return производная
+     */
+    public abstract Expression derivative(String variable);
 
     /**
      * Проверяет, является ли строка корректным именем переменной.

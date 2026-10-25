@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
-
 import maksunova.expression.Expression;
 import maksunova.expression.Number;
 import maksunova.expression.Parser;
@@ -21,46 +20,45 @@ public class Main {
 
     /**
      * функция входа.
-     * @param args
+     *
+     * @param args передаваемые аргументы входной функции
      */
     public static void main(String[] args) {
 
-            // Печать выражения в файл/консоль.
-            // Создание выражения по заданной в файле/консоли строке.
-            //
-            // input   e.print();
-            // output  (3+(2*x))
-            Expression e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
-            System.out.println("Созданное выражение: " + e.print());
+        // Печать выражения в файл/консоль.
+        // Создание выражения по заданной в файле/консоли строке.
+        //
+        // input   e.print();
+        // output  (3+(2*x))
+        Expression e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
+        System.out.println("Созданное выражение: " + e.print());
 
 
-            // Символьное дифференцирование выражений по заданной переменной.
-            //
-            // input   de.print();
-            // output  (0+((0*x)+(2*1)))
-            Expression de = e.derivative("x");
-            System.out.println("Продефференцированное выражение: " + de.print());
-            // изначальное выражение не меняется, а создается новое
-            // соответствующее результату дифференцирования.
-            //
-            // названия переменных могут быть многобуквенными.
+        // Символьное дифференцирование выражений по заданной переменной.
+        //
+        // input   de.print();
+        // output  (0+((0*x)+(2*1)))
+        Expression de = e.derivative("x");
+        System.out.println("Продефференцированное выражение: " + de.print());
+        // изначальное выражение не меняется, а создается новое
+        // соответствующее результату дифференцирования.
+        //
+        // названия переменных могут быть многобуквенными.
 
 
 
-            // Вычисление значения выражения
-            // при заданном означивании всех переменных.
-            //
-            // input   System.out.println(result);
-            // output  23
-            // (3+(2*x))
-            e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
-            int result = e.eval("x = 10; y = 13");
-            System.out.println("Вычисленное выражение при заданных переменных: " + result);
-            // Функция eval в качестве аргумента принимает строку,
-            // в которой через разделитель “;” указано означивание переменных.
-
-
-            /*
+        // Вычисление значения выражения
+        // при заданном означивании всех переменных.
+        //
+        // input   System.out.println(result);
+        // output  23
+        // (3+(2*x))
+        e = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
+        int result = e.eval("x = 10; y = 13");
+        System.out.println("Вычисленное выражение при заданных переменных: " + result);
+        // Функция eval в качестве аргумента принимает строку,
+        // в которой через разделитель “;” указано означивание переменных.
+        /*
                     В качестве дополнительного задания реализуйте:
             1. Считывание выражения со строки, работающее со строкой без скобок вокруг
             каждого выражения.
@@ -78,7 +76,7 @@ public class Main {
 
                     Упрощение не меняет исходное выражение, а создает новое
                     (упрощенное) выражение по заданному.
-                 */
+        */
 
         boolean isWorking = true;
         String choose;

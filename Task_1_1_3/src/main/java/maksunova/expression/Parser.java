@@ -14,10 +14,11 @@ public class Parser {
 
     /**
      * перерабатывает валидную строку символов в вырадение.
+     *
      * @param str передаваемая строка
      * @return выражение
      */
-    public Expression parse(String str){
+    public Expression parse(String str) {
         this.str = str;
         this.position = 0;
 
@@ -26,7 +27,8 @@ public class Parser {
         Expression node = parseAddSub();
 
         if (position < this.str.length()) {
-            throw new RuntimeException("Использован неучитываемый символ: " + this.str.charAt(position));
+            throw new RuntimeException("Использован неучитываемый символ: "
+                    + this.str.charAt(position));
         }
         return node;
     }
