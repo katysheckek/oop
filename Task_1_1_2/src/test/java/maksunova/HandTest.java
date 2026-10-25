@@ -1,16 +1,19 @@
 package maksunova;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import maksunova.card.Card;
 import maksunova.card.Rank;
 import maksunova.card.Suit;
 import maksunova.hand.Hand;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
+/**
+ * тесты для проверки функций локального набора карт в "руке" у игроков.
+ */
 class HandTest {
 
     private Card card(Rank rank) {

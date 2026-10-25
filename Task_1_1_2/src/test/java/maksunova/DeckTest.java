@@ -1,13 +1,14 @@
 package maksunova;
 
-import maksunova.card.Card;
-import maksunova.game.Deck;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
+import maksunova.card.Card;
+import maksunova.game.Deck;
+import org.junit.jupiter.api.Test;
 
 class DeckTest {
 

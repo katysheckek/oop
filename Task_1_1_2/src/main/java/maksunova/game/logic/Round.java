@@ -30,10 +30,13 @@ public class Round {
         giveCards();
     }
 
-    public Deck getDeck() { return this.deck; }
+    public Deck getDeck() {
+        return this.deck;
+    }
 
     /**
      * Player move: take card from the deck.
+     *
      * @return taken card
      */
     public Card playerHit() {
@@ -80,7 +83,7 @@ public class Round {
     }
 
     /**
-     * Decide winner of the round
+     * Decide winner of the round.
      */
     public ResOfTheGame evaluateResult() {
         if (player.getHand().isOver21()) {

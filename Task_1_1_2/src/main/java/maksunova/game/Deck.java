@@ -1,11 +1,11 @@
 package maksunova.game;
 
-import maksunova.card.Card;
-import maksunova.card.Rank;
-import maksunova.card.Suit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import maksunova.card.Card;
+import maksunova.card.Rank;
+import maksunova.card.Suit;
 
 /**
  * the 52 cards deck after permutations.

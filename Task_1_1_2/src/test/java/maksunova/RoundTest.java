@@ -4,17 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import maksunova.card.Card;
-import maksunova.game.logic.Round;
-import maksunova.hand.Dealer;
-import maksunova.game.Deck;
 import maksunova.card.Rank;
 import maksunova.card.Suit;
+import maksunova.game.logic.Round;
+import maksunova.game.Deck;
 import maksunova.game.ResOfTheGame;
+import maksunova.hand.Dealer;
 import maksunova.hand.Player;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 class RoundTest {
 

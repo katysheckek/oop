@@ -11,7 +11,8 @@ class ResOfTheGameTest {
     @Test
     void values_containsAll() {
         assertArrayEquals(
-                new ResOfTheGame[]{ResOfTheGame.WIN, ResOfTheGame.DRAW, ResOfTheGame.LOSE, ResOfTheGame.UNDEF},
+                new ResOfTheGame[]{ResOfTheGame.WIN, ResOfTheGame.DRAW,
+                        ResOfTheGame.LOSE, ResOfTheGame.UNDEF},
                 ResOfTheGame.values()
         );
     }

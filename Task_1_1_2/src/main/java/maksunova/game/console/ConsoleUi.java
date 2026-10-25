@@ -1,10 +1,13 @@
 package maksunova.game.console;
 
 import maksunova.card.Card;
+import maksunova.hand.Dealer;
 import maksunova.hand.Hand;
 import maksunova.hand.Player;
-import maksunova.hand.Dealer;
 
+/**
+ * console game presentation 4 user;
+ */
 public class ConsoleUi {
 
     /**

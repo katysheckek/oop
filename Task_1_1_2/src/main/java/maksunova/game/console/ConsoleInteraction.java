@@ -9,6 +9,7 @@ public class ConsoleInteraction {
 
     private final Scanner scanner = new Scanner(System.in);
     String action;
+
     /**
      * ask for action.
      *

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import maksunova.card.Card;
 import maksunova.card.Rank;
 import maksunova.card.Suit;
-
 import org.junit.jupiter.api.Test;
 
 /**
