@@ -6,7 +6,7 @@ import maksunova.hand.Hand;
 import maksunova.hand.Player;
 
 /**
- * console game presentation 4 user;
+ * console game presentation 4 user.
  */
 public class ConsoleUi {
 

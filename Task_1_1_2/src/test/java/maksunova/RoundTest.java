@@ -3,6 +3,8 @@ package maksunova;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
 import maksunova.card.Card;
 import maksunova.card.Rank;
 import maksunova.card.Suit;
@@ -11,8 +13,6 @@ import maksunova.game.Deck;
 import maksunova.game.ResOfTheGame;
 import maksunova.hand.Dealer;
 import maksunova.hand.Player;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class RoundTest {

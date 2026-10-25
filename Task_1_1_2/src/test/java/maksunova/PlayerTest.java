@@ -9,6 +9,9 @@ import maksunova.card.Suit;
 import maksunova.hand.Player;
 import org.junit.jupiter.api.Test;
 
+/**
+ * test 4 player operations logic.
+ */
 public class PlayerTest {
     @Test
     void newPlayer_hasEmptyHand() {

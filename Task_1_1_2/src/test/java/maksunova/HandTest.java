@@ -8,7 +8,6 @@ import maksunova.card.Card;
 import maksunova.card.Rank;
 import maksunova.card.Suit;
 import maksunova.hand.Hand;
-
 import org.junit.jupiter.api.Test;
 
 /**
