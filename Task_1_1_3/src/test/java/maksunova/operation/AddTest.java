@@ -7,6 +7,9 @@ import maksunova.expression.Number;
 import maksunova.expression.Variable;
 import org.junit.jupiter.api.Test;
 
+/**
+ * check Add class with JUnitTests.
+ */
 public class AddTest {
     @Test
     void testDerivative() {
