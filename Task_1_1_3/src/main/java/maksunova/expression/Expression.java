@@ -24,14 +24,6 @@ public abstract class Expression {
     public abstract int eval(Map<String, Integer> vars);
 
     /**
-     * Находит производную выражения по заданной переменной.
-     *
-     * @param variable имя переменной, по которой берется производная
-     * @return производная
-     */
-    public abstract Expression derivative(String variable);
-
-    /**
      * Вычисляет значение выражения, если переменных нет.
      *
      * @return результат вычисления
@@ -39,6 +31,14 @@ public abstract class Expression {
     public int eval() {
         return eval(java.util.Collections.emptyMap());
     }
+
+    /**
+     * Находит производную выражения по заданной переменной.
+     *
+     * @param variable имя переменной, по которой берется производная
+     * @return производная
+     */
+    public abstract Expression derivative(String variable);
 
     /**
      * Вычисляет значение выражения, принимая строку с присваиваниями.
@@ -63,7 +63,7 @@ public abstract class Expression {
                         try {
                             int value = Integer.parseInt(valStr);
                             vars.put(key, value);
-                        } catch (NumberFormatException ignored) {}
+                        } catch (NumberFormatException ignored) { continue; }
                     } else {
                         throw new RuntimeException("Невалидное имя переменной");
                     }

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import maksunova.expression.Expression;
 import maksunova.expression.Variable;
 import maksunova.expression.Number;
-import org.junit.jupiter.api.Test;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
 class MulTest {
 

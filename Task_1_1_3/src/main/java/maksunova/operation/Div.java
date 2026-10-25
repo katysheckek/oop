@@ -1,9 +1,8 @@
 package maksunova.operation;
 
 import maksunova.expression.BinaryExpression;
-import maksunova.expression.Expression;
-
 import java.util.Map;
+import maksunova.expression.Expression;
 
 /**
  * Выражение для операции деления двух подвыражений.

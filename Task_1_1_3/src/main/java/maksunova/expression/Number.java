@@ -21,7 +21,7 @@ public class Number extends Expression {
      * Возвращает строковое представление числа.
      */
     @Override
-    public String print(){
+    public String print() {
         return Integer.toString(value);
     }
 

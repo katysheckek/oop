@@ -5,20 +5,28 @@ import maksunova.operation.Div;
 import maksunova.operation.Mul;
 import maksunova.operation.Sub;
 
+/**
+ * класс с методом разбора строки с файла или консоли.
+ */
 public class Parser {
-    private String s;
+    private String str;
     private int position;
 
+    /**
+     * перерабатывает валидную строку символов в вырадение.
+     * @param str передаваемая строка
+     * @return выражение
+     */
     public Expression parse(String str){
-        this.s = str;
+        this.str = str;
         this.position = 0;
 
-        s = s.replaceAll(" ", "");
+        this.str = this.str.replaceAll(" ", "");
 
         Expression node = parseAddSub();
 
-        if (position < s.length()) {
-            throw new RuntimeException("Использован неучитываемый символ: " + s.charAt(position));
+        if (position < this.str.length()) {
+            throw new RuntimeException("Использован неучитываемый символ: " + this.str.charAt(position));
         }
         return node;
     }
@@ -26,8 +34,8 @@ public class Parser {
     private Expression parseAddSub() {
         Expression node = parseMulDiv();
 
-        while (position < s.length()) {
-            char c = s.charAt(position);
+        while (position < str.length()) {
+            char c = str.charAt(position);
 
             if (c == '+') {
                 position++;
@@ -46,14 +54,13 @@ public class Parser {
     private Expression parseMulDiv() {
         Expression node = parseFirst();
 
-        while (position < s.length()) {
-            char c = s.charAt(position);
+        while (position < str.length()) {
+            char c = str.charAt(position);
 
             if (c == '*') {
                 position++;
                 node = new Mul(node, parseFirst());
-            }
-            else if (c == '/') {
+            } else if (c == '/') {
                 position++;
                 node = new Div(node, parseFirst());
             } else {
@@ -65,17 +72,17 @@ public class Parser {
     }
 
     private Expression parseFirst() {
-        if (position >= s.length()) {
+        if (position >= str.length()) {
             throw new RuntimeException("Указатель не указывает на строку");
         }
 
-        char c = s.charAt(position);
+        char c = str.charAt(position);
 
         if (c == '(') {
             position++;
             Expression node  = parseAddSub();
 
-            if (position >= s.length() || s.charAt(position) != ')') {
+            if (position >= str.length() || str.charAt(position) != ')') {
                 throw new RuntimeException("нет закрывающей скобки");
             }
             position++;
@@ -85,8 +92,8 @@ public class Parser {
 
         if (Character.isDigit(c)) {
             int val = 0;
-            while (position < s.length() && Character.isDigit(s.charAt(position))) {
-                val = val*10 + (s.charAt(position) - '0');
+            while (position < str.length() && Character.isDigit(str.charAt(position))) {
+                val = val * 10 + (str.charAt(position) - '0');
                 position++;
             }
             return new Number(val);
@@ -94,12 +101,11 @@ public class Parser {
 
         if (Character.isLetter(c)) {
             StringBuilder strBl = new StringBuilder();
-            while (position < s.length() &&
-                            (Character.isLetter(s.charAt(position)) ||
-                            Character.isDigit(s.charAt(position)) ||
-                            s.charAt(position) == '_')) {
-
-                strBl.append(s.charAt(position));
+            while (position < str.length()
+                    && (Character.isLetter(str.charAt(position))
+                    || Character.isDigit(str.charAt(position))
+                    || str.charAt(position) == '_')) {
+                strBl.append(str.charAt(position));
                 position++;
             }
             return new Variable(strBl.toString());

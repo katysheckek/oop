@@ -37,8 +37,7 @@ public class Variable extends Expression {
     public Expression derivative(String variable) {
         if (name.equals(variable)) {
             return new Number(1);
-        }
-        else {
+        } else {
             return new Number(0);
         }
     }
