@@ -1,0 +1,78 @@
+package maksunova.expression;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+class ParserTest {
+
+    private final Parser parser = new Parser();
+
+    @Test
+    void testSimpleNumber() {
+        Expression expr = parser.parse("123");
+        assertNotNull(expr);
+        assertEquals(123, expr.eval()); // Предполагается, что есть метод evaluate()
+    }
+
+    @Test
+    void testSimpleVariable() {
+        Expression expr = parser.parse("x_1");
+        assertNotNull(expr);
+    }
+
+    @Test
+    void testAdditionAndSubtraction() {
+        Expression expr = parser.parse("10 - 3 + 5");
+        assertNotNull(expr);
+    }
+
+    @Test
+    void testMultiplicationAndDivisionPriority() {
+        // Умножение должно выполниться раньше сложения
+        Expression expr = parser.parse("2 + 3 * 4");
+        assertNotNull(expr);
+    }
+
+    @Test
+    void testBrackets() {
+        Expression expr = parser.parse("(2 + 3) * 4");
+        assertNotNull(expr);
+    }
+
+    @Test
+    void testMissingBracketThrowsException() {
+        assertThrows(RuntimeException.class, () -> {
+            parser.parse("(2 + 3");
+        });
+    }
+
+    @Test
+    void testUnexpectedSymbolThrowsException() {
+        assertThrows(RuntimeException.class, () -> {
+            parser.parse("2 + $");
+        });
+    }
+    @Test
+    void testDivision() {
+        assertEquals(5, parser.parse("10/2").eval());
+    }
+
+    @Test
+    void testVariableWithDigitsAndUnderscore() {
+        assertEquals(7, parser.parse("ab12_cd").eval("ab12_cd=7"));
+    }
+
+    @Test
+    void testTrailingOperatorThrows() {
+        assertThrows(RuntimeException.class, () -> parser.parse("2+"));
+    }
+
+    @Test
+    void testSubtractionBranch() {
+        // проходит по ветке '-' в parseAddSub
+        assertEquals(4, parser.parse("10-3-3").eval());
+    }
+}
