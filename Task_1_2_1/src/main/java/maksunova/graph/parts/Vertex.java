@@ -31,7 +31,7 @@ public class Vertex<T> {
      *
      * @return данные вершины
      */
-    public T getData(){
+    public T getData() {
         return data;
     }
 

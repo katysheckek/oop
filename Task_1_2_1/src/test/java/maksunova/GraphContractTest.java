@@ -1,12 +1,12 @@
 package maksunova;
 
 import static maksunova.TestUtil.DIRECTED_FILE;
+import static maksunova.TestUtil.UNDIRECTED_FILE;
 import static maksunova.TestUtil.adjNames;
 import static maksunova.TestUtil.assertAdjacent;
 import static maksunova.TestUtil.edges;
 import static maksunova.TestUtil.find;
 import static maksunova.TestUtil.names;
-import static maksunova.TestUtil.UNDIRECTED_FILE;
 import static maksunova.TestUtil.tempFile;
 import static maksunova.TestUtil.ver;
 import static maksunova.TestUtil.vertices;
@@ -317,7 +317,7 @@ abstract class GraphContractTest {
     }
 
     @Test
-    void missingFileThrowsIOException() {
+    void missingFileThrowsIoException() {
         Graph<String> g = create(true);
         assertThrows(IOException.class, () -> g.readGraph("no_such_file_for_graph_tests.txt"));
     }

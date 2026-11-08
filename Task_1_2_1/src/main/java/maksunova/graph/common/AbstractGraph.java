@@ -66,8 +66,8 @@ public abstract class AbstractGraph<T> implements Graph<T> {
                 try {
                     value = type.cast(rec.data());
                 } catch (ClassCastException e) {
-                    throw new IOException("Bad data for vertex " +
-                            rec.name() + ": " + rec.data(), e);
+                    throw new IOException("Bad data for vertex "
+                            + rec.name() + ": " + rec.data(), e);
                 }
             } else {
                 value = (T) rec.data();
@@ -78,8 +78,8 @@ public abstract class AbstractGraph<T> implements Graph<T> {
         // рёбра проверяем до reset, чтобы ошибка не оставила граф наполовину заполненным
         for (GraphReader.EdgeRec rec : data.edges()) {
             if (!byName.containsKey(rec.from()) || !byName.containsKey(rec.to())) {
-                throw new IOException("Edge refers to an unknown vertex: " +
-                        rec.from() + " -> " + rec.to());
+                throw new IOException("Edge refers to an unknown vertex: "
+                        + rec.from() + " -> " + rec.to());
             }
         }
 
@@ -143,8 +143,8 @@ public abstract class AbstractGraph<T> implements Graph<T> {
      * вершина -> множество её соседей (не зависит ни от порядка, ни от способа хранения).
      *
      * @param graph граф, в котором лежит вершина
+     * @param <U> дженерик типа данных вершин, вообще ничем не отличается от {@code <T>}
      * @return карту ключ-значение по ключу-вершине {@code Map<Vertex, Set<Vertex>>}
-     * @param <U>
      */
     private static <U> Map<Vertex<U>, Set<Vertex<U>>> adjacency(Graph<U> graph) {
         Map<Vertex<U>, Set<Vertex<U>>> result = new HashMap<>();

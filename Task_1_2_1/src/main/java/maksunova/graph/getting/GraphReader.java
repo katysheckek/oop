@@ -91,7 +91,8 @@ public class GraphReader {
             return parse(lines, filename);
         } catch (RuntimeException ex) {
             // InputMismatchException, NumberFormatException, IndexOutOfBounds и т.д.
-            throw new IOException("Cannot read graph from \"" + filename + "\": " + ex.getMessage(), ex);
+            throw new IOException("Cannot read graph from \"" + filename + "\": "
+                    + ex.getMessage(), ex);
         }
     }
 
@@ -197,8 +198,8 @@ public class GraphReader {
         linec++;
 
         if (linec != lines.size()) {
-            throw new InputMismatchException("\nUnexpected data after \"===\" in the line:" +
-                    (linec + 1)
+            throw new InputMismatchException("\nUnexpected data after \"===\" in the line:"
+                    + (linec + 1)
                     + ".\nPlease check the structure.");
         }
 

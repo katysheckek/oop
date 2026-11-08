@@ -10,6 +10,11 @@ import maksunova.graph.common.Graph;
  * описывает некоторые возможности имплеметированного интерфейса.
  */
 public class Main {
+    /**
+     * чтоб точно не потерять, вот здесь точка входа в программу.
+     *
+     * @param args аргументы при запуске программы
+     */
     public static void main(String[] args) {
 
         System.out.printf("Hello and welcome!");
@@ -29,8 +34,8 @@ public class Main {
                 graph.readGraph("test.txt");
                 System.out.println(graph);
                 System.out.println("  topSort: " + graph.topSort());
-                System.out.println("  topSort (поиск в глубину): " +
-                        graph.topSort(new DfsSort<>()));
+                System.out.println("  topSort (поиск в глубину): "
+                        + graph.topSort(new DfsSort<>()));
             } catch (IOException e) {
                 System.out.println("Не удалось прочитать test.txt: " + e.getMessage());
             } catch (IllegalStateException e) {

@@ -95,7 +95,7 @@ class TopSortTest {
     }
 
     @Test
-    void selfLoopIsACycle() {
+    void selfLoopIsaCycle() {
         for (Function<Boolean, Graph<String>> factory : factories()) {
             Graph<String> g = factory.apply(true);
             vertices(g, "A", "B");
@@ -188,7 +188,9 @@ class TopSortTest {
                 }
                 for (int i = 0; i < n; i++) {
                     for (int j = i + 1; j < n; j++) {
-                        if (rnd.nextInt(3) == 0) g.addEdge(ver("V" + i), ver("V" + j));
+                        if (rnd.nextInt(3) == 0) {
+                            g.addEdge(ver("V" + i), ver("V" + j));
+                        }
                     }
                 }
                 for (TopSortAlgorithm<String> algorithm : algorithms()) {
