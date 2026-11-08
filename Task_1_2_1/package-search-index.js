@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"maksunova"},{"l":"maksunova.graph.algorithms"},{"l":"maksunova.graph.common"},{"l":"maksunova.graph.getting"},{"l":"maksunova.graph.parts"}];updateSearchResults();
