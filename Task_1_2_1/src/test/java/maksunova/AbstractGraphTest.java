@@ -2,7 +2,6 @@ package maksunova;
 
 import static maksunova.TestUtil.edges;
 import static maksunova.TestUtil.factories;
-import static maksunova.TestUtil.v;
 import static maksunova.TestUtil.vertices;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,10 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
-import java.util.Set;
 import java.util.function.Function;
 import maksunova.graph.common.Graph;
 import maksunova.graph.parts.Vertex;

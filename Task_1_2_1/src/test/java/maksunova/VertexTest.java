@@ -1,9 +1,12 @@
 package maksunova;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import maksunova.graph.parts.Vertex;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class VertexTest {
 
@@ -52,6 +55,9 @@ class VertexTest {
 
     @Test
     void nullDataVerticesAreComparedSafely() {
-        assertEquals(new Vertex<String>("A", null).hashCode(), new Vertex<String>("A", null).hashCode());
+        assertEquals(
+                new Vertex<String>("A", null).hashCode(),
+                new Vertex<String>("A", null).hashCode()
+        );
     }
 }

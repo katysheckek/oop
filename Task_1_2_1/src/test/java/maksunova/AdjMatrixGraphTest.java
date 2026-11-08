@@ -3,7 +3,7 @@ package maksunova;
 import static maksunova.TestUtil.DIRECTED_FILE;
 import static maksunova.TestUtil.edges;
 import static maksunova.TestUtil.tempFile;
-import static maksunova.TestUtil.v;
+import static maksunova.TestUtil.ver;
 import static maksunova.TestUtil.vertices;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
-
 import maksunova.graph.common.AbstractGraph;
 import maksunova.graph.common.Graph;
 import org.junit.jupiter.api.Test;
@@ -48,14 +47,14 @@ class AdjMatrixGraphTest extends GraphContractTest {
     @Test
     void matrixAfterDeletingVertex() {
         AdjMatrixGraph<String> g = sample(true);
-        g.delVertex(v("B"));
+        g.delVertex(ver("B"));
         assertArrayEquals(new int[][]{{0, 1}, {0, 1}}, g.toMatrix());
     }
 
     @Test
     void matrixAfterDeletingEdge() {
         AdjMatrixGraph<String> g = sample(true);
-        g.delEdge(v("A"), v("C"));
+        g.delEdge(ver("A"), ver("C"));
         assertArrayEquals(new int[][]{{0, 1, 0}, {0, 0, 1}, {0, 0, 1}}, g.toMatrix());
     }
 

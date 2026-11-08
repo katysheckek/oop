@@ -1,9 +1,9 @@
 package maksunova;
 
-import static maksunova.TestUtil.edges;
 import static maksunova.TestUtil.DIRECTED_FILE;
+import static maksunova.TestUtil.edges;
 import static maksunova.TestUtil.tempFile;
-import static maksunova.TestUtil.v;
+import static maksunova.TestUtil.ver;
 import static maksunova.TestUtil.vertices;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -61,7 +61,7 @@ class IncMatrixGraphTest extends GraphContractTest {
     @Test
     void matrixAfterDeletingEdge() {
         IncMatrixGraph<String> g = sample(true);
-        g.delEdge(v("A"), v("C"));
+        g.delEdge(ver("A"), ver("C"));
         assertArrayEquals(new int[][]{
                 {1, 0, 0},
                 {-1, 1, 0},
@@ -71,7 +71,7 @@ class IncMatrixGraphTest extends GraphContractTest {
     @Test
     void deletingVertexRemovesItsColumns() {
         IncMatrixGraph<String> g = sample(true);
-        g.delVertex(v("B"));   // уходят e0 и e2, остаются A->C и C->C
+        g.delVertex(ver("B"));   // уходят e0 и e2, остаются A->C и C->C
         assertArrayEquals(new int[][]{
                 {1, 0},
                 {-1, 2}}, g.toMatrix());
@@ -80,7 +80,7 @@ class IncMatrixGraphTest extends GraphContractTest {
     @Test
     void addingVertexAddsZeroRow() {
         IncMatrixGraph<String> g = sample(true);
-        g.addVertex(v("D"));
+        g.addVertex(ver("D"));
         assertArrayEquals(new int[]{0, 0, 0, 0}, g.toMatrix()[3]);
     }
 
@@ -93,10 +93,10 @@ class IncMatrixGraphTest extends GraphContractTest {
 
     @Test
     void edgesInBothDirectionsAreDifferentColumnsInDirectedGraph() {
-        IncMatrixGraph<String> g = new IncMatrixGraph<>(true, String.class);
-        vertices(g, "A", "B");
-        edges(g, "A->B", "B->A");
-        assertArrayEquals(new int[][]{{1, -1}, {-1, 1}}, g.toMatrix());
+        IncMatrixGraph<String> graph = new IncMatrixGraph<>(true, String.class);
+        vertices(graph, "A", "B");
+        edges(graph, "A->B", "B->A");
+        assertArrayEquals(new int[][]{{1, -1}, {-1, 1}}, graph.toMatrix());
     }
 
     @Test

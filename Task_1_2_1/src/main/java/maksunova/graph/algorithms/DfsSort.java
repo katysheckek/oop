@@ -39,7 +39,10 @@ public class DfsSort<T> implements TopSortAlgorithm<T> {
         return new ArrayList<>(order);
     }
 
-    private void visit(Graph<T> graph, Vertex<T> ver, Map<Vertex<T>, Color> color, Deque<Vertex<T>> order) {
+    private void visit(
+            Graph<T> graph, Vertex<T> ver,
+            Map<Vertex<T>, Color> color,
+                    Deque<Vertex<T>> order) {
         color.put(ver, Color.GRAY);
         for (Vertex<T> adjVer : graph.getAdjacentVertices(ver)) {
             Color c = color.get(adjVer);

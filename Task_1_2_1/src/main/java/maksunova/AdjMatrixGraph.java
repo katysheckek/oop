@@ -83,7 +83,9 @@ public class AdjMatrixGraph<T> extends AbstractGraph<T> {
         int[][] smaller = new int[n - 1][n - 1];
 
         for (int i = 0, ni = 0; i < n; i++) {
-            if (i == idx) continue; // пропускаем удаляемую вершину
+            if (i == idx) {
+                continue; // пропускаем удаляемую вершину
+            }
 
             // копируем левую часть
             System.arraycopy(matrix[i], 0, smaller[ni], 0, idx);
@@ -115,7 +117,9 @@ public class AdjMatrixGraph<T> extends AbstractGraph<T> {
         int i = requireIndex(source);
         int j = requireIndex(dest);
         matrix[i][j] = 1;
-        if (!directed) matrix[j][i] = 1;
+        if (!directed) {
+            matrix[j][i] = 1;
+        }
     }
 
     /**
@@ -129,7 +133,9 @@ public class AdjMatrixGraph<T> extends AbstractGraph<T> {
         int i = requireIndex(source);
         int j = requireIndex(dest);
         matrix[i][j] = 0;
-        if (!directed) matrix[j][i] = 0;
+        if (!directed) {
+            matrix[j][i] = 0;
+        }
     }
 
     /**
@@ -153,7 +159,9 @@ public class AdjMatrixGraph<T> extends AbstractGraph<T> {
         int i = requireIndex(ver);
         List<Vertex<T>> result = new ArrayList<>();
         for (int j = 0; j < matrix.length; j++) {
-            if (matrix[i][j] != 0) result.add(vertices.get(j));
+            if (matrix[i][j] != 0) {
+                result.add(vertices.get(j));
+            }
         }
         return result;
     }

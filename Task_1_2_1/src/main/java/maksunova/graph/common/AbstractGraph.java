@@ -1,8 +1,5 @@
 package maksunova.graph.common;
 
-import maksunova.graph.getting.GraphReader;
-import maksunova.graph.parts.Vertex;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,15 +9,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import maksunova.graph.getting.GraphReader;
+import maksunova.graph.parts.Vertex;
 
 /**
- * общая часть всех представлений графа: чтение из файла, сравнение и вывод в строку.
- * всё работает только через методы интерфейса Graph, поэтому новое представление
+ * общая часть всех представлений графа: новое представление
  * получает readGraph, equals, hashCode и toString без дополнительного кода.
+ *
  * <p>
  * два графа равны, если они одинаково направлены и содержат одни и те же вершины
- * (имя и данные) и одни и те же рёбра. способ хранения не важен: граф в матрице
- * смежности может быть равен такому же графу в списке смежности.
+ * (имя и данные) и одни и те же рёбра. способ хранения не важен
  *
  * @param <T> тип данных вершин
  */
@@ -68,7 +66,8 @@ public abstract class AbstractGraph<T> implements Graph<T> {
                 try {
                     value = type.cast(rec.data());
                 } catch (ClassCastException e) {
-                    throw new IOException("Bad data for vertex " + rec.name() + ": " + rec.data(), e);
+                    throw new IOException("Bad data for vertex " +
+                            rec.name() + ": " + rec.data(), e);
                 }
             } else {
                 value = (T) rec.data();
@@ -79,7 +78,8 @@ public abstract class AbstractGraph<T> implements Graph<T> {
         // рёбра проверяем до reset, чтобы ошибка не оставила граф наполовину заполненным
         for (GraphReader.EdgeRec rec : data.edges()) {
             if (!byName.containsKey(rec.from()) || !byName.containsKey(rec.to())) {
-                throw new IOException("Edge refers to an unknown vertex: " + rec.from() + " -> " + rec.to());
+                throw new IOException("Edge refers to an unknown vertex: " +
+                        rec.from() + " -> " + rec.to());
             }
         }
 
@@ -100,8 +100,12 @@ public abstract class AbstractGraph<T> implements Graph<T> {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AbstractGraph<?> other)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof AbstractGraph<?> other)) {
+            return false;
+        }
         return isDirected() == other.isDirected()
                 && adjacency(this).equals(adjacency(other));
     }
@@ -135,7 +139,13 @@ public abstract class AbstractGraph<T> implements Graph<T> {
         return sb.toString();
     }
 
-    /** вершина -> множество её соседей (не зависит ни от порядка, ни от способа хранения). */
+    /**
+     * вершина -> множество её соседей (не зависит ни от порядка, ни от способа хранения).
+     *
+     * @param graph граф, в котором лежит вершина
+     * @return карту ключ-значение по ключу-вершине {@code Map<Vertex, Set<Vertex>>}
+     * @param <U>
+     */
     private static <U> Map<Vertex<U>, Set<Vertex<U>>> adjacency(Graph<U> graph) {
         Map<Vertex<U>, Set<Vertex<U>>> result = new HashMap<>();
         for (Vertex<U> ver : graph.getVertices()) {

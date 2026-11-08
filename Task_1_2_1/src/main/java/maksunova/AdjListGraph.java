@@ -8,6 +8,11 @@ import java.util.Map;
 import maksunova.graph.common.AbstractGraph;
 import maksunova.graph.parts.Vertex;
 
+/**
+ * граф в виде списка смжности.
+ *
+ * @param <T> дженерик для типа данных графа
+ */
 public class AdjListGraph<T> extends AbstractGraph<T> {
 
     private boolean directed;
@@ -80,8 +85,12 @@ public class AdjListGraph<T> extends AbstractGraph<T> {
     public void addEdge(Vertex<T> source, Vertex<T> dest) {
         List<Vertex<T>> out = requireList(source);
         List<Vertex<T>> in = requireList(dest);
-        if (!out.contains(dest)) out.add(dest);
-        if (!directed && !in.contains(source)) in.add(source);
+        if (!out.contains(dest)) {
+            out.add(dest);
+        }
+        if (!directed && !in.contains(source)) {
+            in.add(source);
+        }
     }
 
     /**
@@ -95,7 +104,9 @@ public class AdjListGraph<T> extends AbstractGraph<T> {
         List<Vertex<T>> out = requireList(source);
         List<Vertex<T>> in = requireList(dest);
         out.remove(dest);
-        if (!directed) in.remove(source);
+        if (!directed) {
+            in.remove(source);
+        }
     }
 
     /**

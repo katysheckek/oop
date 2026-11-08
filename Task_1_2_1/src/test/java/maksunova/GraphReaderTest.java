@@ -1,9 +1,9 @@
 package maksunova;
 
-import static maksunova.graph.getting.GraphReader.readfileGraph;
 import static maksunova.TestUtil.DIRECTED_FILE;
 import static maksunova.TestUtil.UNDIRECTED_FILE;
 import static maksunova.TestUtil.tempFile;
+import static maksunova.graph.getting.GraphReader.readfileGraph;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -29,7 +29,12 @@ class GraphReaderTest {
         return data.vertices().stream().map(GraphReader.VertexRec::name).toList();
     }
 
-    /** читатель сейчас бросает и IOException, и InputMismatchException, и IllegalArgumentException. */
+    /**
+     * ридер бросает и IOException, и InputMismatchException, и IllegalArgumentException.
+     *
+     * @param content откуда брать контент
+     * @throws IOException вылезла ошибка при чтении файла
+     */
     private static void assertBroken(String content) throws IOException {
         Path file = tempFile(content);
         assertThrows(IOException.class, () -> GraphReader.readfileGraph(file.toString()));
@@ -96,7 +101,7 @@ class GraphReaderTest {
     // ---------- некорректные файлы ----------
 
     @Test
-    void missingFileThrowsIOException() {
+    void missingFileThrowsIoException() {
         assertThrows(IOException.class,
                 () -> readfileGraph("no_such_file_for_graph_tests.txt"));
     }

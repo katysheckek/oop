@@ -64,7 +64,9 @@ public class IncMatrixGraph<T> extends AbstractGraph<T> {
             } else {
                 match = incMatrix[fromVertex][column] == 1 && incMatrix[toVertex][column] == 1;
             }
-            if (match) return column;
+            if (match) {
+                return column;
+            }
         }
         return -1;
     }
@@ -115,7 +117,9 @@ public class IncMatrixGraph<T> extends AbstractGraph<T> {
         int[][] smallerMatrix = new int[nodes - 1][keptEdgeColumns.size()];
         for (int nod = 0, keeped = 0; nod < nodes; nod++) {
 
-            if (nod == removedVertex) continue; // пропускаем удаляемую вершину
+            if (nod == removedVertex) {
+                continue; // пропускаем удаляемую вершину
+            }
             for (int newColumn = 0; newColumn < keptEdgeColumns.size(); newColumn++) {
                 smallerMatrix[keeped][newColumn] = incMatrix[nod][keptEdgeColumns.get(newColumn)];
             }
@@ -144,7 +148,9 @@ public class IncMatrixGraph<T> extends AbstractGraph<T> {
     public void addEdge(Vertex<T> source, Vertex<T> dest) {
         int sourceId = requireIndex(source);
         int destId = requireIndex(dest);
-        if (findEdge(sourceId, destId) != -1) return;
+        if (findEdge(sourceId, destId) != -1) {
+            return;
+        }
 
         // новый столбец
         int[][] widermatrix = new int[nodes][edges + 1];
@@ -173,7 +179,9 @@ public class IncMatrixGraph<T> extends AbstractGraph<T> {
     @Override
     public void delEdge(Vertex<T> source, Vertex<T> dest) {
         int removedEdgeColumn = findEdge(requireIndex(source), requireIndex(dest));
-        if (removedEdgeColumn == -1) return;
+        if (removedEdgeColumn == -1) {
+            return;
+        }
 
         int[][] narrowerMatrix = new int[nodes][edges - 1];
         for (int row = 0; row < nodes; row++) {
@@ -207,14 +215,20 @@ public class IncMatrixGraph<T> extends AbstractGraph<T> {
         List<Vertex<T>> result = new ArrayList<>();
         for (int c = 0; c < edges; c++) {
             int value = incMatrix[i][c];
-            if (value == 0) continue;
+            if (value == 0) {
+                continue;
+            }
             if (value == 2) {                          // петля
                 result.add(ver);
                 continue;
             }
-            if (directed && value == -1) continue;     // ребро входит в вершину, а не выходит
+            if (directed && value == -1) {
+                continue;     // ребро входит в вершину, а не выходит
+            }
             for (int k = 0; k < nodes; k++) {          // второй конец ребра
-                if (k != i && incMatrix[k][c] != 0) result.add(vertices.get(k));
+                if (k != i && incMatrix[k][c] != 0) {
+                    result.add(vertices.get(k));
+                }
             }
         }
         return result;

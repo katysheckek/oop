@@ -1,7 +1,5 @@
 package maksunova;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -9,10 +7,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 import java.util.function.Function;
 import maksunova.graph.common.Graph;
 import maksunova.graph.parts.Vertex;
@@ -51,7 +49,7 @@ final class TestUtil {
             "===") + "\n";
 
     /** вершина с предсказуемыми данными: name -> "d" + name. */
-    static Vertex<String> v(String name) {
+    static Vertex<String> ver(String name) {
         return new Vertex<>(name, "d" + name);
     }
 
@@ -65,7 +63,7 @@ final class TestUtil {
 
     static void vertices(Graph<String> g, String... names) {
         for (String name : names) {
-            g.addVertex(v(name));
+            g.addVertex(ver(name));
         }
     }
 
@@ -73,20 +71,24 @@ final class TestUtil {
     static void edges(Graph<String> g, String... pairs) {
         for (String pair : pairs) {
             String[] ab = pair.split("->");
-            g.addEdge(v(ab[0]), v(ab[1]));
+            g.addEdge(ver(ab[0]), ver(ab[1]));
         }
     }
 
     static Vertex<String> find(Graph<String> g, String name) {
         for (Vertex<String> x : g.getVertices()) {
-            if (x.getName().equals(name)) return x;
+            if (x.getName().equals(name)) {
+                return x;
+            }
         }
         throw new AssertionError("в графе нет вершины " + name);
     }
 
     static List<String> names(List<Vertex<String>> vs) {
         List<String> result = new ArrayList<>();
-        for (Vertex<String> x : vs) result.add(x.getName());
+        for (Vertex<String> x : vs) {
+            result.add(x.getName());
+        }
         return result;
     }
 

@@ -48,13 +48,17 @@ public class Vertex<T> {
     /**
      * метод сравнения с вершиной.
      *
-     * @param o   the reference object with which to compare
+     * @param o the reference object with which to compare
      * @return true or false
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Vertex<?> other)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Vertex<?> other)) {
+            return false;
+        }
         return Objects.equals(name, other.name) && Objects.equals(data, other.data);
     }
 

@@ -1,10 +1,10 @@
 package maksunova;
 
-import static maksunova.TestUtil.adjNames;
 import static maksunova.TestUtil.DIRECTED_FILE;
+import static maksunova.TestUtil.adjNames;
 import static maksunova.TestUtil.edges;
 import static maksunova.TestUtil.tempFile;
-import static maksunova.TestUtil.v;
+import static maksunova.TestUtil.ver;
 import static maksunova.TestUtil.vertices;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -36,7 +36,7 @@ class AdjListGraphTest extends GraphContractTest {
         Graph<String> g = create(false);
         vertices(g, "A", "B", "C");
         edges(g, "A->B", "C->B", "A->C");
-        g.delVertex(v("B"));
+        g.delVertex(ver("B"));
         assertEquals(List.of("C"), adjNames(g, "A"));
         assertEquals(List.of("A"), adjNames(g, "C"));
     }

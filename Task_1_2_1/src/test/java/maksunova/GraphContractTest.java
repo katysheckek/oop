@@ -1,24 +1,24 @@
 package maksunova;
 
-import static maksunova.TestUtil.assertAdjacent;
-import static maksunova.TestUtil.adjNames;
 import static maksunova.TestUtil.DIRECTED_FILE;
+import static maksunova.TestUtil.adjNames;
+import static maksunova.TestUtil.assertAdjacent;
 import static maksunova.TestUtil.edges;
 import static maksunova.TestUtil.find;
 import static maksunova.TestUtil.names;
-import static maksunova.TestUtil.tempFile;
 import static maksunova.TestUtil.UNDIRECTED_FILE;
-import static maksunova.TestUtil.v;
+import static maksunova.TestUtil.tempFile;
+import static maksunova.TestUtil.ver;
 import static maksunova.TestUtil.vertices;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.List;
-
 import maksunova.graph.common.AbstractGraph;
 import maksunova.graph.common.Graph;
 import org.junit.jupiter.api.Test;
@@ -49,15 +49,15 @@ abstract class GraphContractTest {
         Graph<String> g = create(true);
         vertices(g, "A", "B", "C");
         assertEquals(List.of("A", "B", "C"), names(g));
-        assertTrue(g.hasVertex(v("B")));
-        assertFalse(g.hasVertex(v("Z")));
+        assertTrue(g.hasVertex(ver("B")));
+        assertFalse(g.hasVertex(ver("Z")));
     }
 
     @Test
     void addExistingVertexThrows() {
         Graph<String> g = create(true);
         vertices(g, "A");
-        assertThrows(IllegalArgumentException.class, () -> g.addVertex(v("A")));
+        assertThrows(IllegalArgumentException.class, () -> g.addVertex(ver("A")));
         assertEquals(1, g.getVertices().size());
     }
 
@@ -66,9 +66,9 @@ abstract class GraphContractTest {
         Graph<String> g = create(true);
         vertices(g, "A", "B", "C");
         edges(g, "A->B", "B->C", "C->A");
-        g.delVertex(v("B"));
+        g.delVertex(ver("B"));
         assertEquals(List.of("A", "C"), names(g));
-        assertFalse(g.hasVertex(v("B")));
+        assertFalse(g.hasVertex(ver("B")));
         assertAdjacent(g, "A");
         assertAdjacent(g, "C", "A");
     }
@@ -78,12 +78,12 @@ abstract class GraphContractTest {
         Graph<String> g = create(true);
         vertices(g, "A", "B", "C", "D");
         edges(g, "A->D", "B->C", "C->D");
-        g.delVertex(v("B"));
+        g.delVertex(ver("B"));
         assertAdjacent(g, "A", "D");
         assertAdjacent(g, "C", "D");
 
-        g.addVertex(v("E"));
-        g.addEdge(v("C"), v("E"));
+        g.addVertex(ver("E"));
+        g.addEdge(ver("C"), ver("E"));
         assertAdjacent(g, "C", "D", "E");
         assertAdjacent(g, "E");
         assertEquals(List.of("A", "C", "D", "E"), names(g));
@@ -94,8 +94,8 @@ abstract class GraphContractTest {
         Graph<String> g = create(false);
         vertices(g, "A", "B", "C");
         edges(g, "A->B", "B->C");
-        g.delVertex(v("A"));
-        g.delVertex(v("C"));
+        g.delVertex(ver("A"));
+        g.delVertex(ver("C"));
         assertEquals(List.of("B"), names(g));
         assertAdjacent(g, "B");
     }
@@ -103,7 +103,7 @@ abstract class GraphContractTest {
     @Test
     void delMissingVertexThrows() {
         Graph<String> g = create(true);
-        assertThrows(IllegalArgumentException.class, () -> g.delVertex(v("A")));
+        assertThrows(IllegalArgumentException.class, () -> g.delVertex(ver("A")));
     }
 
     @Test
@@ -111,8 +111,8 @@ abstract class GraphContractTest {
         Graph<String> g = create(true);
         vertices(g, "A", "B");
         edges(g, "A->B");
-        g.delVertex(v("A"));
-        g.addVertex(v("A"));
+        g.delVertex(ver("A"));
+        g.addVertex(ver("A"));
         assertAdjacent(g, "A");
         assertAdjacent(g, "B");
         assertEquals(List.of("B", "A"), names(g));
@@ -127,8 +127,8 @@ abstract class GraphContractTest {
         edges(g, "A->B");
         assertAdjacent(g, "A", "B");
         assertAdjacent(g, "B");
-        assertTrue(g.hasEdge(v("A"), v("B")));
-        assertFalse(g.hasEdge(v("B"), v("A")));
+        assertTrue(g.hasEdge(ver("A"), ver("B")));
+        assertFalse(g.hasEdge(ver("B"), ver("A")));
     }
 
     @Test
@@ -138,8 +138,8 @@ abstract class GraphContractTest {
         edges(g, "A->B");
         assertAdjacent(g, "A", "B");
         assertAdjacent(g, "B", "A");
-        assertTrue(g.hasEdge(v("A"), v("B")));
-        assertTrue(g.hasEdge(v("B"), v("A")));
+        assertTrue(g.hasEdge(ver("A"), ver("B")));
+        assertTrue(g.hasEdge(ver("B"), ver("A")));
     }
 
     @Test
@@ -149,11 +149,11 @@ abstract class GraphContractTest {
             vertices(g, "C");
             edges(g, "C->C");
             assertAdjacent(g, "C", "C");
-            assertTrue(g.hasEdge(v("C"), v("C")));
+            assertTrue(g.hasEdge(ver("C"), ver("C")));
 
-            g.delEdge(v("C"), v("C"));
+            g.delEdge(ver("C"), ver("C"));
             assertAdjacent(g, "C");
-            assertFalse(g.hasEdge(v("C"), v("C")));
+            assertFalse(g.hasEdge(ver("C"), ver("C")));
         }
     }
 
@@ -172,8 +172,8 @@ abstract class GraphContractTest {
     void addEdgeWithUnknownVertexThrows() {
         Graph<String> g = create(true);
         vertices(g, "A");
-        assertThrows(IllegalArgumentException.class, () -> g.addEdge(v("A"), v("Z")));
-        assertThrows(IllegalArgumentException.class, () -> g.addEdge(v("Z"), v("A")));
+        assertThrows(IllegalArgumentException.class, () -> g.addEdge(ver("A"), ver("Z")));
+        assertThrows(IllegalArgumentException.class, () -> g.addEdge(ver("Z"), ver("A")));
         assertAdjacent(g, "A");
     }
 
@@ -182,7 +182,7 @@ abstract class GraphContractTest {
         Graph<String> g = create(true);
         vertices(g, "A", "B");
         edges(g, "A->B", "B->A");
-        g.delEdge(v("A"), v("B"));
+        g.delEdge(ver("A"), ver("B"));
         assertAdjacent(g, "A");
         assertAdjacent(g, "B", "A");
     }
@@ -192,7 +192,7 @@ abstract class GraphContractTest {
         Graph<String> g = create(false);
         vertices(g, "A", "B", "C");
         edges(g, "A->B", "A->C");
-        g.delEdge(v("B"), v("A"));
+        g.delEdge(ver("B"), ver("A"));
         assertAdjacent(g, "A", "C");
         assertAdjacent(g, "B");
         assertAdjacent(g, "C", "A");
@@ -203,8 +203,8 @@ abstract class GraphContractTest {
         Graph<String> g = create(true);
         vertices(g, "A", "B", "C");
         edges(g, "A->B");
-        g.delEdge(v("B"), v("A"));
-        g.delEdge(v("A"), v("C"));
+        g.delEdge(ver("B"), ver("A"));
+        g.delEdge(ver("A"), ver("C"));
         assertAdjacent(g, "A", "B");
     }
 
@@ -212,8 +212,8 @@ abstract class GraphContractTest {
     void delEdgeWithUnknownVertexThrows() {
         Graph<String> g = create(true);
         vertices(g, "A");
-        assertThrows(IllegalArgumentException.class, () -> g.delEdge(v("A"), v("Z")));
-        assertThrows(IllegalArgumentException.class, () -> g.delEdge(v("Z"), v("A")));
+        assertThrows(IllegalArgumentException.class, () -> g.delEdge(ver("A"), ver("Z")));
+        assertThrows(IllegalArgumentException.class, () -> g.delEdge(ver("Z"), ver("A")));
     }
 
     // ---------- соседи и копии ----------
@@ -221,7 +221,7 @@ abstract class GraphContractTest {
     @Test
     void adjacentVerticesOfUnknownVertexThrows() {
         Graph<String> g = create(true);
-        assertThrows(IllegalArgumentException.class, () -> g.getAdjacentVertices(v("A")));
+        assertThrows(IllegalArgumentException.class, () -> g.getAdjacentVertices(ver("A")));
     }
 
     @Test
@@ -245,9 +245,15 @@ abstract class GraphContractTest {
     void biggerGraphKeepsAllEdges() {
         Graph<String> g = create(true);
         int n = 40;
-        for (int i = 0; i < n; i++) g.addVertex(v("V" + i));
-        for (int i = 0; i + 1 < n; i++) g.addEdge(v("V" + i), v("V" + (i + 1)));
-        for (int i = 0; i + 1 < n; i++) assertAdjacent(g, "V" + i, "V" + (i + 1));
+        for (int i = 0; i < n; i++) {
+            g.addVertex(ver("V" + i));
+        }
+        for (int i = 0; i + 1 < n; i++) {
+            g.addEdge(ver("V" + i), ver("V" + (i + 1)));
+        }
+        for (int i = 0; i + 1 < n; i++) {
+            assertAdjacent(g, "V" + i, "V" + (i + 1));
+        }
         assertAdjacent(g, "V" + (n - 1));
     }
 
@@ -301,13 +307,13 @@ abstract class GraphContractTest {
     @Test
     void brokenFileLeavesGraphUntouched() throws IOException {
         String broken = DIRECTED_FILE.replace("A B\n", "A Z\n");
-        Graph<String> g = create(true);
-        vertices(g, "X", "Y");
-        edges(g, "X->Y");
+        Graph<String> graph = create(true);
+        vertices(graph, "X", "Y");
+        edges(graph, "X->Y");
         Path file = tempFile(broken);
-        assertThrows(IOException.class, () -> g.readGraph(file.toString()));
-        assertEquals(List.of("X", "Y"), names(g));
-        assertAdjacent(g, "X", "Y");
+        assertThrows(IOException.class, () -> graph.readGraph(file.toString()));
+        assertEquals(List.of("X", "Y"), names(graph));
+        assertAdjacent(graph, "X", "Y");
     }
 
     @Test

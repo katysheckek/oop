@@ -11,19 +11,19 @@ import org.junit.jupiter.api.Test;
 
 class EdgeTest {
 
-    private final Vertex<String> a = new Vertex<>("A", "x");
-    private final Vertex<String> b = new Vertex<>("B", "y");
+    private final Vertex<String> aa = new Vertex<>("A", "x");
+    private final Vertex<String> bb = new Vertex<>("B", "y");
 
     @Test
     void gettersReturnEnds() {
-        Edge<String> e = new Edge<>(a, b);
-        assertEquals(a, e.getFrom());
-        assertEquals(b, e.getTo());
+        Edge<String> e = new Edge<>(aa, bb);
+        assertEquals(aa, e.getFrom());
+        assertEquals(bb, e.getTo());
     }
 
     @Test
     void equalEdgesHaveSameEnds() {
-        Edge<String> e1 = new Edge<>(a, b);
+        Edge<String> e1 = new Edge<>(aa, bb);
         Edge<String> e2 = new Edge<>(new Vertex<>("A", "x"), new Vertex<>("B", "y"));
         assertEquals(e1, e2);
         assertEquals(e1.hashCode(), e2.hashCode());
@@ -31,17 +31,17 @@ class EdgeTest {
 
     @Test
     void directionMatters() {
-        assertNotEquals(new Edge<>(a, b), new Edge<>(b, a));
+        assertNotEquals(new Edge<>(aa, bb), new Edge<>(bb, aa));
     }
 
     @Test
     void differentEndsMeanDifferentEdges() {
-        assertNotEquals(new Edge<>(a, b), new Edge<>(a, a));
+        assertNotEquals(new Edge<>(aa, bb), new Edge<>(aa, aa));
     }
 
     @Test
     void equalsIsReflexiveAndHandlesNullAndOtherTypes() {
-        Edge<String> e = new Edge<>(a, b);
+        Edge<String> e = new Edge<>(aa, bb);
         assertTrue(e.equals(e));
         assertFalse(e.equals(null));
         assertFalse(e.equals("A -> B"));
@@ -49,7 +49,7 @@ class EdgeTest {
 
     @Test
     void stringFormats() {
-        Edge<String> e = new Edge<>(a, b);
+        Edge<String> e = new Edge<>(aa, bb);
         assertEquals("A -> B", e.orientEdgeToString());
         assertEquals("A <-> B", e.nonorientEdgeToString());
     }

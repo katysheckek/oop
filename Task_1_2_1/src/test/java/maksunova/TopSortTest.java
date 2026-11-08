@@ -4,7 +4,7 @@ import static maksunova.TestUtil.assertTopologicalOrder;
 import static maksunova.TestUtil.edges;
 import static maksunova.TestUtil.factories;
 import static maksunova.TestUtil.names;
-import static maksunova.TestUtil.v;
+import static maksunova.TestUtil.ver;
 import static maksunova.TestUtil.vertices;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -162,8 +162,12 @@ class TopSortTest {
         int n = 300;
         for (Function<Boolean, Graph<String>> factory : factories()) {
             Graph<String> g = factory.apply(true);
-            for (int i = 0; i < n; i++) g.addVertex(v("V" + i));
-            for (int i = 0; i + 1 < n; i++) g.addEdge(v("V" + i), v("V" + (i + 1)));
+            for (int i = 0; i < n; i++) {
+                g.addVertex(ver("V" + i));
+            }
+            for (int i = 0; i + 1 < n; i++) {
+                g.addEdge(ver("V" + i), ver("V" + (i + 1)));
+            }
             for (TopSortAlgorithm<String> algorithm : algorithms()) {
                 List<String> order = names(g.topSort(algorithm));
                 assertEquals("V0", order.get(0));
@@ -179,10 +183,12 @@ class TopSortTest {
             for (Function<Boolean, Graph<String>> factory : factories()) {
                 Graph<String> g = factory.apply(true);
                 int n = 7;
-                for (int i = 0; i < n; i++) g.addVertex(v("V" + i));
+                for (int i = 0; i < n; i++) {
+                    g.addVertex(ver("V" + i));
+                }
                 for (int i = 0; i < n; i++) {
                     for (int j = i + 1; j < n; j++) {
-                        if (rnd.nextInt(3) == 0) g.addEdge(v("V" + i), v("V" + j));
+                        if (rnd.nextInt(3) == 0) g.addEdge(ver("V" + i), ver("V" + j));
                     }
                 }
                 for (TopSortAlgorithm<String> algorithm : algorithms()) {
@@ -198,9 +204,11 @@ class TopSortTest {
         for (int round = 0; round < 300; round++) {
             Graph<String> g = new AdjListGraph<>(true, String.class);
             int n = 6;
-            for (int i = 0; i < n; i++) g.addVertex(v("V" + i));
+            for (int i = 0; i < n; i++) {
+                g.addVertex(ver("V" + i));
+            }
             for (int k = 0; k < 7; k++) {
-                g.addEdge(v("V" + rnd.nextInt(n)), v("V" + rnd.nextInt(n)));
+                g.addEdge(ver("V" + rnd.nextInt(n)), ver("V" + rnd.nextInt(n)));
             }
             boolean kahnFails = fails(g, new Khansort<>());
             boolean dfsFails = fails(g, new DfsSort<>());

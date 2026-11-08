@@ -1,11 +1,14 @@
 package maksunova;
 
+import java.io.IOException;
+import java.util.List;
 import maksunova.graph.algorithms.DfsSort;
 import maksunova.graph.common.Graph;
 
-import java.io.IOException;
-import java.util.List;
-
+/**
+ * точка входа в программу.
+ * описывает некоторые возможности имплеметированного интерфейса.
+ */
 public class Main {
     public static void main(String[] args) {
 
@@ -26,7 +29,8 @@ public class Main {
                 graph.readGraph("test.txt");
                 System.out.println(graph);
                 System.out.println("  topSort: " + graph.topSort());
-                System.out.println("  topSort (поиск в глубину): " + graph.topSort(new DfsSort<>()));
+                System.out.println("  topSort (поиск в глубину): " +
+                        graph.topSort(new DfsSort<>()));
             } catch (IOException e) {
                 System.out.println("Не удалось прочитать test.txt: " + e.getMessage());
             } catch (IllegalStateException e) {

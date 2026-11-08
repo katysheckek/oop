@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * представление отношения связи между вершинами(ребра).
  *
- * @param <T>
+ * @param <T> дженерик для типа данных вершин
  */
 public class Edge<T> {
 
@@ -53,8 +53,12 @@ public class Edge<T> {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Edge<?> other)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Edge<?> other)) {
+            return false;
+        }
         return from.equals(other.from)
                 && to.equals(other.to);
     }

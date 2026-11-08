@@ -1,9 +1,5 @@
 package maksunova.graph.common;
 
-import maksunova.graph.algorithms.TopSortAlgorithm;
-import maksunova.graph.parts.Edge;
-import maksunova.graph.parts.Vertex;
-
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -11,11 +7,14 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import maksunova.graph.algorithms.TopSortAlgorithm;
+import maksunova.graph.parts.Edge;
+import maksunova.graph.parts.Vertex;
 
 /**
  * интерфейс графа для реализации разных способов хранения.
  *
- * @param <T>
+ * @param <T> дженерик типа данных вершины
  */
 public interface Graph<T> {
 
@@ -144,7 +143,9 @@ public interface Graph<T> {
         // выносим висящие вершинки в очередь
         Deque<Vertex<T>> queue = new ArrayDeque<>();
         for (Vertex<T> v : all) {
-            if (inDegree.get(v) == 0) queue.add(v);
+            if (inDegree.get(v) == 0)  {
+                queue.add(v);
+            }
         }
 
         // проходимся по графу, начиная из висячих вершин
