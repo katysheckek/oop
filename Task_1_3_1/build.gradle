@@ -3,7 +3,7 @@ plugins {
     id 'jacoco'
 }
 
-group = 'ru.nsu.maksunova'
+group = 'maksunova'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -14,14 +14,18 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.junit.platform:junit-platform-suite:1.10.2'
 }
 
 test {
     useJUnitPlatform()
+    maxHeapSize = '64m'
 }
 
 jacocoTestReport {
+    dependsOn test
     reports {
         xml.required = true
+        html.required = true
     }
 }
