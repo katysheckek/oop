@@ -1,59 +1,67 @@
 package heapsort;
 
+/**
+ * Realise heapsort and additional functions.
+ */
 public class HeapSort {
 
     /**
-     * sorts elements in the ascending order, use a binary tree as the conception
-     * @param list  array pointer, show all unsorted numbers. Must not be NULL
+     * Sorts elements in the ascending order, use a binary tree conception.
+     *
+     * @param list array pointer, show all unsorted numbers. Must not be NULL
      */
-    public static void sort(int[] list){
+    public static void sort(int[] list) {
 
         if (list == null) {
             throw new NullPointerException("The pointer must not be null");
         }
 
         int len = list.length;
-        for (int parentID = (len - 2)/2; parentID >= 0; parentID--) {
-            buildHeap(list, parentID, len-1);
+        for (int parentId = (len - 2) / 2; parentId >= 0; parentId--) {
+            buildHeap(list, parentId, len - 1);
         }
 
-        for(int heapEnd = len - 1; heapEnd > 0; heapEnd--) {
+        for (int heapEnd = len - 1; heapEnd > 0; heapEnd--) {
             swap(list, 0, heapEnd);
-            buildHeap(list, 0, heapEnd-1);
+            buildHeap(list, 0, heapEnd - 1);
         }
     }
 
     /**
-     * builds a heap where parents are greater than or equal to their children
-     * @param list  array pointer, show all unsorted numbers.
-     * @param parentID
-     * @param heapEnd
+     * Builds a heap where parents are greater than or equal to their children.
+     *
+     * @param list     array pointer, show all unsorted numbers.
+     * @param parentId index of the parent element.
+     * @param heapEnd  index of the last element in the heap.
      */
-    private static void buildHeap(int[] list, int parentID, int heapEnd){
+    private static void buildHeap(int[] list, int parentId, int heapEnd) {
 
-        int childID;
-        while ( 2 * parentID + 1 <= heapEnd ){
+        int childId;
+        while (2 * parentId + 1 <= heapEnd) {
 
-            childID = 2 * parentID + 1;
+            childId = 2 * parentId + 1;
 
-            if (childID < heapEnd) {
-                if (list[childID] < list[childID+1])
-                    childID++;
+            if (childId < heapEnd) {
+                if (list[childId] < list[childId + 1]) {
+                    childId++;
+                }
             }
 
-            if (list[parentID] < list[childID]) {
-                swap(list, parentID, childID);
-                parentID = childID;
-            } else
-                parentID = heapEnd;
+            if (list[parentId] < list[childId]) {
+                swap(list, parentId, childId);
+                parentId = childId;
+            } else {
+                parentId = heapEnd;
+            }
         }
     }
 
     /**
-     * swaps list elements by specific indexes
+     * Swaps list elements by specific indexes.
+     *
      * @param list  array pointer, show all unsorted numbers.
-     * @param start
-     * @param end
+     * @param start index of the first element.
+     * @param end   index of the second element.
      */
     public static void swap(int[] list, int start, int end) {
         int temp;
@@ -61,6 +69,4 @@ public class HeapSort {
         list[start] = list[end];
         list[end] = temp;
     }
-
-
 }
